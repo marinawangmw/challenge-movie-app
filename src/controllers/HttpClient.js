@@ -7,6 +7,10 @@ const client = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
+  params: {
+    api_key: Config.API_KEY,
+    language: 'en-US',
+  },
 });
 
 client.interceptors.response.use(

@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet, Image } from 'react-native';
 import { spacing } from '@/theme';
 
-const Header = () => {
+export const Header = () => {
   return (
     <View style={styles.header}>
       <Image
@@ -14,8 +14,6 @@ const Header = () => {
     </View>
   );
 };
-
-export default Header;
 
 const styles = StyleSheet.create({
   header: {

@@ -2,10 +2,10 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { View, ImageBackground, StyleSheet } from 'react-native';
 import { Config } from 'react-native-config';
 import LinearGradient from 'react-native-linear-gradient';
-import Header from './Header';
 import Labels from './Labels';
 import SpecialBanner from './SpecialBanner';
 import Controls from './Controls';
+import { Header } from '@/components';
 import { spacing } from '@/theme';
 import { getTrending, getAllGenre } from '@/controllers/MovieController';
 

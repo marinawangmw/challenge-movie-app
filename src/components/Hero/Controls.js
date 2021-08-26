@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { spacing, typography } from '@/theme';
+import { addIcon, playIcon, infoIcon } from '@/assets';
 
 const Controls = () => {
   return (
@@ -8,7 +9,7 @@ const Controls = () => {
       <View style={styles.controlWrapper}>
         <TouchableOpacity>
           <Image
-            source={require('@/assets/plus.png')}
+            source={addIcon}
             style={styles.icon}
             resizeMode="cover"
             accessibilityIgnoresInvertColors
@@ -20,7 +21,7 @@ const Controls = () => {
       <View style={styles.controlWrapper}>
         <TouchableOpacity>
           <Image
-            source={require('@/assets/play.png')}
+            source={playIcon}
             style={styles.playIcon}
             resizeMode="cover"
             accessibilityIgnoresInvertColors
@@ -32,7 +33,7 @@ const Controls = () => {
       <View style={styles.controlWrapper}>
         <TouchableOpacity>
           <Image
-            source={require('@/assets/info.png')}
+            source={infoIcon}
             style={styles.icon}
             resizeMode="cover"
             accessibilityIgnoresInvertColors

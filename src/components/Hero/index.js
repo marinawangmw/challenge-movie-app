@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { View, ImageBackground, StyleSheet } from 'react-native';
+import { useTheme } from '@react-navigation/native';
 import { Config } from 'react-native-config';
 import LinearGradient from 'react-native-linear-gradient';
 import Labels from './Labels';
@@ -13,6 +14,8 @@ export const Hero = () => {
   const [posterURL, setPosterURL] = useState('');
   const [genreIds, setGenreIds] = useState([]);
   const [genres, setGenres] = useState([]);
+
+  const { colors } = useTheme();
 
   const getData = useCallback(async () => {
     try {
@@ -32,7 +35,7 @@ export const Hero = () => {
   }, [getData]);
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: colors.primary }]}>
       <ImageBackground
         source={{ uri: Config.IMAGE_API_BASE_URL + posterURL }}
         resizeMode="cover"
@@ -58,7 +61,6 @@ export const Hero = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'black',
   },
   gradient: {
     width: '100%',

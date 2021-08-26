@@ -5,7 +5,7 @@ import { typography, spacing } from '@/theme';
 const Labels = ({ labels }) => {
   return (
     <View style={styles.container}>
-      {labels.map((label, idx) => (
+      {labels.slice(0, 3).map((label, idx) => (
         <View style={styles.row} key={idx}>
           {idx > 0 && <Text style={styles.divider}>{'\u2B24'}</Text>}
           <Text style={[styles.label, typography.text]}>{label.name}</Text>

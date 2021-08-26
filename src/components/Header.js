@@ -1,12 +1,13 @@
 import React from 'react';
 import { View, StyleSheet, Image } from 'react-native';
 import { spacing } from '@/theme';
+import { logo } from '@/assets';
 
 export const Header = () => {
   return (
     <View style={styles.header}>
       <Image
-        source={require('@/assets/logo/logo.png')}
+        source={logo}
         style={styles.headerImg}
         resizeMode="contain"
         accessibilityIgnoresInvertColors

@@ -14,7 +14,7 @@ export const Hero = () => {
   const [posterURL, setPosterURL] = useState('');
   const [genreIds, setGenreIds] = useState([]);
   const [genres, setGenres] = useState([]);
-  const [allGenres, setAllGenres] = useState([]);
+  const [allGenres, setAllGenres] = useState(null);
 
   const { colors } = useTheme();
 
@@ -25,7 +25,7 @@ export const Hero = () => {
       setGenreIds(trendingMovies.results[0].genre_ids);
 
       const allGenresResult = await getAllGenre();
-      setGenres(allGenresResult?.genres.filter((g) => genreIds.includes(g.id)));
+      setAllGenres(allGenresResult);
     } catch (e) {
       console.log(e);
     }
@@ -35,18 +35,10 @@ export const Hero = () => {
     getData();
   }, [getData]);
 
-  useEffect(() => {}, [genreIds, allGenres]);
-
   useEffect(() => {
-    let isMounted = true;
-
-    if (allGenres.length && isMounted) {
+    if (Boolean(allGenres) && genreIds.length) {
       setGenres(allGenres?.genres.filter((g) => genreIds.includes(g.id)));
     }
-
-    return () => {
-      isMounted = false;
-    };
   }, [genreIds, allGenres]);
 
   return (

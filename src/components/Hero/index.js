@@ -25,7 +25,7 @@ export const Hero = () => {
       setGenreIds(trendingMovies.results[0].genre_ids);
 
       const allGenresResult = await getAllGenre();
-      setGenres(allGenresResult?.genres.filter((g) => genreIds.includes(g.id)));
+      setAllGenres(allGenresResult);
     } catch (e) {
       console.log(e);
     }
@@ -35,18 +35,10 @@ export const Hero = () => {
     getData();
   }, [getData]);
 
-  useEffect(() => {}, [genreIds, allGenres]);
-
   useEffect(() => {
-    let isMounted = true;
-
-    if (allGenres.length && isMounted) {
+    if (allGenres && genreIds) {
       setGenres(allGenres?.genres.filter((g) => genreIds.includes(g.id)));
     }
-
-    return () => {
-      isMounted = false;
-    };
   }, [genreIds, allGenres]);
 
   return (

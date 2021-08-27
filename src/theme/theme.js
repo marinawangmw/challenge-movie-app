@@ -1,30 +1,30 @@
 import { DarkTheme, DefaultTheme } from '@react-navigation/native';
 
+const defaultColors = {
+  primary: '#000000',
+  secondary: '#0578FF',
+  error: '#D32F2F',
+  text: '#FFFFFF',
+  border: '#171717',
+  activeTab: '#0578FF',
+  inactiveTab: '#FFFFFF',
+  card: '#171717',
+  background: '#000000',
+};
+
 export const theme = {
   light: {
     ...DefaultTheme,
     colors: {
       ...DefaultTheme.colors,
-      primary: '#B0BEC5',
-      secondary: '#29434E',
-      error: '#D32F2F',
-      text: '#212121',
-      border: '#212121',
-      activeTab: '#1976D2',
-      inactiveTab: '#757575',
+      ...defaultColors,
     },
   },
   dark: {
     ...DarkTheme,
     colors: {
       ...DarkTheme.colors,
-      primary: '#212121',
-      secondary: '#29434E',
-      error: '#D32F2F',
-      text: '#FFFFFF',
-      border: '#FFFFFF',
-      activeTab: '#4FC3F7',
-      inactiveTab: '#FFFFFF',
+      ...defaultColors,
     },
   },
 };

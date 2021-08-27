@@ -13,7 +13,7 @@ export function RootNavigator() {
 
   return (
     <NavigationContainer theme={theme[scheme]}>
-      {user ? <AppNavigator /> : <AuthNavigator />}
+      <AppNavigator />
     </NavigationContainer>
   );
 }

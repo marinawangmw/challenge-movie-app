@@ -14,6 +14,7 @@ export const Hero = () => {
   const [posterURL, setPosterURL] = useState('');
   const [genreIds, setGenreIds] = useState([]);
   const [genres, setGenres] = useState([]);
+  const [allGenres, setAllGenres] = useState([]);
 
   const { colors } = useTheme();
 
@@ -23,16 +24,30 @@ export const Hero = () => {
       setPosterURL(trendingMovies.results[0].poster_path);
       setGenreIds(trendingMovies.results[0].genre_ids);
 
-      const allGenres = await getAllGenre();
-      setGenres(allGenres.genres.filter((g) => genreIds.includes(g.id)));
+      const allGenresResult = await getAllGenre();
+      setGenres(allGenresResult?.genres.filter((g) => genreIds.includes(g.id)));
     } catch (e) {
       console.log(e);
     }
-  }, [genreIds]);
+  }, []);
 
   useEffect(() => {
     getData();
   }, [getData]);
+
+  useEffect(() => {}, [genreIds, allGenres]);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    if (allGenres.length && isMounted) {
+      setGenres(allGenres?.genres.filter((g) => genreIds.includes(g.id)));
+    }
+
+    return () => {
+      isMounted = false;
+    };
+  }, [genreIds, allGenres]);
 
   return (
     <View style={[styles.container, { backgroundColor: colors.primary }]}>

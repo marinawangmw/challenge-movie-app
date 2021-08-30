@@ -21,8 +21,8 @@ export const Hero = () => {
   const getData = useCallback(async () => {
     try {
       const trendingMovies = await getTrending();
-      setPosterURL(trendingMovies.results[0].poster_path);
-      setGenreIds(trendingMovies.results[0].genre_ids);
+      setPosterURL(trendingMovies.results[10].poster_path);
+      setGenreIds(trendingMovies.results[10].genre_ids);
 
       const allGenresResult = await getAllGenre();
       setAllGenres(allGenresResult);
@@ -75,7 +75,6 @@ const styles = StyleSheet.create({
   },
   imgBg: {
     width: '100%',
-    height: '100%',
   },
   bottomContainer: {
     alignItems: 'center',

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Dimensions, View, FlatList } from 'react-native';
+import { strings } from '@/localization';
 import { Hero, MovieList } from '@/components';
 import { getTrending, getRecentlyAdded } from '@/controllers/MovieController';
 
@@ -16,9 +17,9 @@ export function Home() {
       const recentlyAdded = responses[1].results.slice(0, 10);
 
       setMovieLists([
-        { title: 'My List', movieList: myList },
-        { title: 'Trending Now', movieList: trendingNow },
-        { title: 'Recently Added', movieList: recentlyAdded },
+        { title: strings.movieLists.myList, movieList: myList },
+        { title: strings.movieLists.trending, movieList: trendingNow },
+        { title: strings.movieLists.recentlyAdded, movieList: recentlyAdded },
       ]);
     } catch (error) {
       console.log(error);

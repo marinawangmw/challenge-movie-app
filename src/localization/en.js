@@ -21,4 +21,14 @@ export const en = {
     logout: 'Logout',
     message: 'This screen has the iOS native large header.',
   },
+  controls: {
+    myList: 'My List',
+    play: 'Play',
+    info: 'Info',
+  },
+  movieLists: {
+    myList: 'My List',
+    trending: 'Trending Now',
+    recentlyAdded: 'Recently Added',
+  },
 };

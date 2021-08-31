@@ -3,17 +3,14 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { spacing, typography } from '@/theme';
 import { addIcon, playIcon, infoIcon } from '@/assets';
-
-const MY_LIST = 'My List';
-const PLAY = 'Play';
-const INFO = 'Info';
+import { strings } from '@/localization';
 
 const Controls = () => {
   const { colors } = useTheme();
   const controlDatas = [
-    { icon: addIcon, label: MY_LIST },
-    { icon: playIcon, label: PLAY },
-    { icon: infoIcon, label: INFO },
+    { icon: addIcon, label: strings.controls.myList },
+    { icon: playIcon, label: strings.controls.play },
+    { icon: infoIcon, label: strings.controls.info },
   ];
 
   const renderControls = (control, idx) => (
@@ -21,7 +18,7 @@ const Controls = () => {
       <TouchableOpacity>
         <Image
           source={control.icon}
-          style={[styles.icon, control.label === PLAY && styles.playIcon]}
+          style={[styles.icon, control.label === strings.controls.play && styles.playIcon]}
           resizeMode="cover"
           accessibilityIgnoresInvertColors
         />

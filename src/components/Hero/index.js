@@ -22,9 +22,10 @@ export const Hero = () => {
     try {
       const responses = await Promise.all([getTrending(), getAllGenre()]);
 
-      const trendingMovies = responses[0].results[0];
-      setPosterURL(trendingMovies.poster_path);
-      setGenreIds(trendingMovies.genre_ids);
+      const posterMovieIndex = Math.floor(Math.random() * responses[0].results.length);
+      const posterMovie = responses[0].results[posterMovieIndex];
+      setPosterURL(posterMovie.poster_path);
+      setGenreIds(posterMovie.genre_ids);
 
       const allGenresResult = responses[1];
       setAllGenres(allGenresResult);

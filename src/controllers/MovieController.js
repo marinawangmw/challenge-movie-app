@@ -1,6 +1,6 @@
 import { HttpClient } from './HttpClient';
 
-export function getRecentlyAdded() {
+export function getTrending() {
   return HttpClient.get('/movie/top_rated', {
     params: {
       page: 1,
@@ -8,10 +8,10 @@ export function getRecentlyAdded() {
   });
 }
 
-export function getTrending() {
+export function getRecentlyAdded() {
   return HttpClient.get('/discover/movie', {
     params: {
-      sort_by: 'release_date.asc',
+      sort_by: 'release_date.desc',
     },
   });
 }

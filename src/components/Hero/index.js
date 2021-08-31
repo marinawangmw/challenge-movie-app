@@ -20,11 +20,14 @@ export const Hero = () => {
 
   const getData = useCallback(async () => {
     try {
-      const trendingMovies = await getTrending();
-      setPosterURL(trendingMovies.results[0].poster_path);
-      setGenreIds(trendingMovies.results[0].genre_ids);
+      const responses = await Promise.all([getTrending(), getAllGenre()]);
 
-      const allGenresResult = await getAllGenre();
+      const posterMovieIndex = Math.floor(Math.random() * responses[0].results.length);
+      const posterMovie = responses[0].results[posterMovieIndex];
+      setPosterURL(posterMovie.poster_path);
+      setGenreIds(posterMovie.genre_ids);
+
+      const allGenresResult = responses[1];
       setAllGenres(allGenresResult);
     } catch (e) {
       console.log(e);
@@ -75,7 +78,6 @@ const styles = StyleSheet.create({
   },
   imgBg: {
     width: '100%',
-    height: '100%',
   },
   bottomContainer: {
     alignItems: 'center',

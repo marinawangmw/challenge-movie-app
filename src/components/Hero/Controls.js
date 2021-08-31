@@ -1,46 +1,35 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { useTheme } from '@react-navigation/native';
 import { spacing, typography } from '@/theme';
 import { addIcon, playIcon, infoIcon } from '@/assets';
+import { strings } from '@/localization';
 
 const Controls = () => {
+  const { colors } = useTheme();
+  const controlDatas = [
+    { icon: addIcon, label: strings.controls.myList },
+    { icon: playIcon, label: strings.controls.play },
+    { icon: infoIcon, label: strings.controls.info },
+  ];
+
+  const renderControls = (control, idx) => (
+    <View style={styles.controlWrapper} key={idx}>
+      <TouchableOpacity>
+        <Image
+          source={control.icon}
+          style={[styles.icon, control.label === strings.controls.play && styles.playIcon]}
+          resizeMode="cover"
+          accessibilityIgnoresInvertColors
+        />
+      </TouchableOpacity>
+      <Text style={[{ color: colors.text }, typography.label]}>{control.label}</Text>
+    </View>
+  );
+
   return (
-    <View style={styles.container}>
-      <View style={styles.controlWrapper}>
-        <TouchableOpacity>
-          <Image
-            source={addIcon}
-            style={styles.icon}
-            resizeMode="cover"
-            accessibilityIgnoresInvertColors
-          />
-        </TouchableOpacity>
-        <Text style={[styles.description, typography.label]}>My List</Text>
-      </View>
-
-      <View style={styles.controlWrapper}>
-        <TouchableOpacity>
-          <Image
-            source={playIcon}
-            style={styles.playIcon}
-            resizeMode="cover"
-            accessibilityIgnoresInvertColors
-          />
-        </TouchableOpacity>
-        <Text style={[styles.description, typography.label]}>Play</Text>
-      </View>
-
-      <View style={styles.controlWrapper}>
-        <TouchableOpacity>
-          <Image
-            source={infoIcon}
-            style={styles.icon}
-            resizeMode="cover"
-            accessibilityIgnoresInvertColors
-          />
-        </TouchableOpacity>
-        <Text style={[styles.description, typography.label]}>Info</Text>
-      </View>
+    <View style={[styles.container, { color: colors.text }]}>
+      {controlDatas.map((control, idx) => renderControls(control, idx))}
     </View>
   );
 };
@@ -50,7 +39,6 @@ export default Controls;
 export const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    color: 'white',
     alignItems: 'center',
     width: '100%',
     justifyContent: 'space-around',
@@ -61,6 +49,7 @@ export const styles = StyleSheet.create({
     padding: spacing.xs,
     alignItems: 'center',
     justifyContent: 'center',
+    flex: 1,
   },
   icon: {
     width: 28,
@@ -68,12 +57,8 @@ export const styles = StyleSheet.create({
     margin: spacing.xs,
   },
   playIcon: {
-    width: 28,
     height: 34,
-    marginTop: 10,
+    marginTop: spacing.xs,
     marginBottom: 2,
-  },
-  description: {
-    color: 'white',
   },
 });

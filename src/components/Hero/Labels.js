@@ -1,14 +1,17 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { useTheme } from '@react-navigation/native';
 import { typography, spacing } from '@/theme';
 
 const Labels = ({ labels }) => {
+  const { colors } = useTheme();
+
   return (
     <View style={styles.container}>
       {labels.slice(0, 3).map((label, idx) => (
         <View style={styles.row} key={idx}>
-          {idx > 0 && <Text style={styles.divider}>{'\u2B24'}</Text>}
-          <Text style={[styles.label, typography.text]}>{label.name}</Text>
+          {idx > 0 && <Text style={[styles.divider, { color: colors.text }]}>{'\u2B24'}</Text>}
+          <Text style={[{ color: colors.text }, typography.text]}>{label.name}</Text>
         </View>
       ))}
     </View>
@@ -29,11 +32,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-around',
     flex: 1,
   },
-  label: {
-    color: 'white',
-  },
   divider: {
-    color: 'white',
     fontSize: 7,
     paddingVertical: spacing.xs,
   },

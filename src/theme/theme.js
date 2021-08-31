@@ -10,6 +10,7 @@ const defaultColors = {
   inactiveTab: '#FFFFFF',
   card: '#171717',
   background: '#000000',
+  posterBackground: '#f2f2f2',
 };
 
 export const theme = {

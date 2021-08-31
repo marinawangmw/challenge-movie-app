@@ -20,11 +20,13 @@ export const Hero = () => {
 
   const getData = useCallback(async () => {
     try {
-      const trendingMovies = await getTrending();
-      setPosterURL(trendingMovies.results[10].poster_path);
-      setGenreIds(trendingMovies.results[10].genre_ids);
+      const responses = await Promise.all([getTrending(), getAllGenre()]);
 
-      const allGenresResult = await getAllGenre();
+      const trendingMovies = responses[0].results[0];
+      setPosterURL(trendingMovies.poster_path);
+      setGenreIds(trendingMovies.genre_ids);
+
+      const allGenresResult = responses[1];
       setAllGenres(allGenresResult);
     } catch (e) {
       console.log(e);

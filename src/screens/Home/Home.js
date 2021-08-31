@@ -8,19 +8,25 @@ export function Home() {
 
   const windowHeight = Dimensions.get('window').height;
 
+  const getMovieLists = async () => {
+    try {
+      const responses = await Promise.all([getTrending(), getRecentlyAdded()]);
+      const myList = responses[0].results.slice(10, 20);
+      const trendingNow = responses[0].results.slice(0, 10);
+      const recentlyAdded = responses[1].results.slice(0, 10);
+
+      setMovieLists([
+        { title: 'My List', movieList: myList },
+        { title: 'Trending Now', movieList: trendingNow },
+        { title: 'Recently Added', movieList: recentlyAdded },
+      ]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
-    Promise.all([getTrending(), getRecentlyAdded()])
-      .then((values) => {
-        const myList = values[0].results.slice(10, 20);
-        const trendingNow = values[0].results.slice(0, 10);
-        const recentlyAdded = values[1].results.slice(0, 10);
-        setMovieLists([
-          { title: 'My List', movieList: myList },
-          { title: 'Trending Now', movieList: trendingNow },
-          { title: 'Recently Added', movieList: recentlyAdded },
-        ]);
-      })
-      .catch((error) => console.log(error));
+    getMovieLists();
   }, []);
 
   const renderItem = (item) => <MovieList item={item.item} />;

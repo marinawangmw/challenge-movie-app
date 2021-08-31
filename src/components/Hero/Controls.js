@@ -21,7 +21,7 @@ const Controls = () => {
       <TouchableOpacity>
         <Image
           source={control.icon}
-          style={[styles.icon, control.label === 'Play' && styles.playIcon]}
+          style={[styles.icon, control.label === PLAY && styles.playIcon]}
           resizeMode="cover"
           accessibilityIgnoresInvertColors
         />

@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, FlatList, Image, View } from 'react-native';
+import { StyleSheet, Text, FlatList, ImageBackground, Image, View } from 'react-native';
 import { Config } from 'react-native-config';
 import { useTheme } from '@react-navigation/native';
 import { typography, spacing } from '@/theme';
 import { movie } from '@/assets';
+import { SpecialBanner } from '@/components';
 
 export const MovieList = ({ item }) => {
   const { colors } = useTheme();
@@ -12,12 +13,21 @@ export const MovieList = ({ item }) => {
     return (
       <>
         {movieList.item.poster_path ? (
-          <Image
-            source={{ uri: Config.IMAGE_API_BASE_URL + movieList.item.poster_path }}
-            resizeMode="cover"
-            style={styles.img}
-            accessibilityIgnoresInvertColors
-          />
+          <View style={styles.poster}>
+            <ImageBackground
+              source={{ uri: Config.IMAGE_API_BASE_URL + movieList.item.poster_path }}
+              resizeMode="cover"
+              style={styles.img}
+              accessibilityIgnoresInvertColors
+            >
+              <SpecialBanner
+                styles={{
+                  banner: { ...styles.banner, backgroundColor: colors.secondary },
+                  bannerLabel: [styles.bannerLabel, { color: colors.text }],
+                }}
+              />
+            </ImageBackground>
+          </View>
         ) : (
           <View
             style={[
@@ -49,6 +59,27 @@ export const MovieList = ({ item }) => {
 const styles = StyleSheet.create({
   container: {
     margin: spacing.m,
+  },
+  poster: {
+    width: 90,
+    height: 150,
+    margin: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  banner: {
+    zIndex: 2,
+    position: 'absolute',
+    bottom: 10,
+    paddingHorizontal: 8,
+    paddingVertical: 1,
+    alignSelf: 'center',
+    borderRadius: 1.25,
+  },
+  bannerLabel: {
+    fontSize: 4.67,
+    lineHeight: 5.47,
+    fontWeight: 'bold',
   },
   title: {
     marginVertical: spacing.s,

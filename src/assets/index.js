@@ -1,4 +1,7 @@
-export { default as homeIcon } from '@/assets/ic_home/ic_home.png';
+export { default as homeIcon } from '@/assets/ic_home/home.png';
+export { default as searchIcon } from '@/assets/search.png';
+export { default as myListIcon } from '@/assets/myList.png';
+export { default as profileIcon } from '@/assets/profile.png';
 export { default as settingsIcon } from '@/assets/ic_settings/ic_settings.png';
 export { default as logo } from '@/assets/logo/logo.png';
 export { default as infoIcon } from '@/assets/info.png';

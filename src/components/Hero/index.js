@@ -5,10 +5,9 @@ import { useTheme } from '@react-navigation/native';
 import { Config } from 'react-native-config';
 import LinearGradient from 'react-native-linear-gradient';
 import Labels from './Labels';
-import SpecialBanner from './SpecialBanner';
 import Controls from './Controls';
-import { Header } from '@/components';
-import { spacing } from '@/theme';
+import { Header, SpecialBanner } from '@/components';
+import { spacing, typography } from '@/theme';
 import { getHeroPoster } from '@/selectors/MovieListSelectors';
 
 export const Hero = () => {
@@ -31,7 +30,12 @@ export const Hero = () => {
           <Header />
           <View style={styles.bottomContainer}>
             <Labels labels={heroPoster.posterGenres} />
-            <SpecialBanner />
+            <SpecialBanner
+              styles={{
+                banner: { ...styles.banner, backgroundColor: `${colors.secondary}4A` },
+                bannerLabel: [styles.bannerLabel, typography.label, { color: colors.secondary }],
+              }}
+            />
             <Controls />
           </View>
         </LinearGradient>
@@ -57,5 +61,15 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     padding: spacing.s,
+  },
+  banner: {
+    marginVertical: spacing.s,
+    borderRadius: 5,
+    paddingVertical: 4,
+    paddingHorizontal: 60,
+  },
+  bannerLabel: {
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
   },
 });

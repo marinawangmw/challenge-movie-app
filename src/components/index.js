@@ -6,3 +6,5 @@ export { Hero } from '@/components/Hero';
 export { Header } from '@/components/Header';
 export { MovieList } from '@/components/MovieList';
 export { SpecialBanner } from '@/components/SpecialBanner';
+export { MovieItem } from '@/components/MovieItem';
+export { MessageBanner } from '@/components/MessageBanner';

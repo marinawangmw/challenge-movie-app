@@ -1,46 +1,43 @@
-import React, { useEffect, useState } from 'react';
-import { Dimensions, View, FlatList } from 'react-native';
-import { strings } from '@/localization';
+import React, { useEffect } from 'react';
+import { Dimensions, FlatList } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 import { Hero, MovieList } from '@/components';
-import { getTrending, getRecentlyAdded } from '@/controllers/MovieController';
+import { Loading } from '@/screens';
+import { fetchMovieListsStartAsync, TYPES } from '@/actions/MovieListActions';
+import { getMovieLists } from '@/selectors/MovieListSelectors';
+import { isLoadingSelector } from '@/selectors/StatusSelectors';
 
 export function Home() {
-  const [movieLists, setMovieLists] = useState([]);
+  const dispatch = useDispatch();
+  const isLoading = useSelector((state) => isLoadingSelector([TYPES.FETCH_MOVIE_LISTS], state));
+
+  const movieLists = useSelector(getMovieLists);
 
   const windowHeight = Dimensions.get('window').height;
 
-  const getMovieLists = async () => {
-    try {
-      const responses = await Promise.all([getTrending(), getRecentlyAdded()]);
-      const myList = responses[0].results.slice(10, 20);
-      const trendingNow = responses[0].results.slice(0, 10);
-      const recentlyAdded = responses[1].results.slice(0, 10);
-
-      setMovieLists([
-        { title: strings.movieLists.myList, movieList: myList },
-        { title: strings.movieLists.trending, movieList: trendingNow },
-        { title: strings.movieLists.recentlyAdded, movieList: recentlyAdded },
-      ]);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
-    getMovieLists();
-  }, []);
+    dispatch(fetchMovieListsStartAsync());
+  }, [dispatch]);
 
   const renderItem = (item) => <MovieList item={item.item} />;
 
-  return (
-    <View>
-      <FlatList
-        data={movieLists}
-        renderItem={renderItem}
-        keyExtractor={(_item, idx) => idx}
-        ListHeaderComponent={Hero}
-        ListHeaderComponentStyle={{ height: windowHeight * 0.8 }}
-      />
-    </View>
-  );
+  const renderHome = () => {
+    if (isLoading) {
+      return <Loading />;
+    }
+
+    if (movieLists) {
+      return (
+        <FlatList
+          data={movieLists}
+          renderItem={renderItem}
+          keyExtractor={(_item, idx) => idx}
+          ListHeaderComponent={Hero}
+          ListHeaderComponentStyle={{ height: windowHeight * 0.8 }}
+        />
+      );
+    }
+  };
+
+  return <>{renderHome()}</>;
 }

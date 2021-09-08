@@ -1,5 +1,6 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React from 'react';
 import { View, ImageBackground, StyleSheet } from 'react-native';
+import { useSelector } from 'react-redux';
 import { useTheme } from '@react-navigation/native';
 import { Config } from 'react-native-config';
 import LinearGradient from 'react-native-linear-gradient';
@@ -8,46 +9,17 @@ import SpecialBanner from './SpecialBanner';
 import Controls from './Controls';
 import { Header } from '@/components';
 import { spacing } from '@/theme';
-import { getTrending, getAllGenre } from '@/controllers/MovieController';
+import { getHeroPoster } from '@/selectors/MovieListSelectors';
 
 export const Hero = () => {
-  const [posterURL, setPosterURL] = useState('');
-  const [genreIds, setGenreIds] = useState([]);
-  const [genres, setGenres] = useState([]);
-  const [allGenres, setAllGenres] = useState(null);
+  const heroPoster = useSelector(getHeroPoster);
 
   const { colors } = useTheme();
-
-  const getData = useCallback(async () => {
-    try {
-      const responses = await Promise.all([getTrending(), getAllGenre()]);
-
-      const posterMovieIndex = Math.floor(Math.random() * responses[0].results.length);
-      const posterMovie = responses[0].results[posterMovieIndex];
-      setPosterURL(posterMovie.poster_path);
-      setGenreIds(posterMovie.genre_ids);
-
-      const allGenresResult = responses[1];
-      setAllGenres(allGenresResult);
-    } catch (e) {
-      console.log(e);
-    }
-  }, []);
-
-  useEffect(() => {
-    getData();
-  }, [getData]);
-
-  useEffect(() => {
-    if (Boolean(allGenres) && genreIds.length) {
-      setGenres(allGenres?.genres.filter((g) => genreIds.includes(g.id)));
-    }
-  }, [genreIds, allGenres]);
 
   return (
     <View style={[styles.container, { backgroundColor: colors.primary }]}>
       <ImageBackground
-        source={{ uri: Config.IMAGE_API_BASE_URL + posterURL }}
+        source={{ uri: Config.IMAGE_API_BASE_URL + heroPoster.posterUrl }}
         resizeMode="cover"
         style={styles.imgBg}
       >
@@ -58,7 +30,7 @@ export const Hero = () => {
         >
           <Header />
           <View style={styles.bottomContainer}>
-            <Labels labels={genres} />
+            <Labels labels={heroPoster.posterGenres} />
             <SpecialBanner />
             <Controls />
           </View>

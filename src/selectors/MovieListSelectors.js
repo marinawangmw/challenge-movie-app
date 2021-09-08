@@ -1,3 +1,5 @@
+import { strings } from '@/localization';
+
 export const getMyList = (state) => {
   return state.movieList.myList;
 };
@@ -7,7 +9,10 @@ export const isMovieListsFetching = (state) => {
 };
 
 export const getMovieLists = (state) => {
-  return state.movieList.movieLists;
+  return [
+    { title: strings.movieLists.myList, movieList: state.movieList.myList },
+    ...state.movieList.movieLists,
+  ];
 };
 
 export const getHeroPoster = (state) => {

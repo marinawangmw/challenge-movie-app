@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Dimensions, View, FlatList } from 'react-native';
+import { Dimensions, FlatList } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { Hero, MovieList } from '@/components';
 import { Loading } from '@/screens';
@@ -26,15 +26,13 @@ export function Home() {
 
     if (movieLists) {
       return (
-        <View>
-          <FlatList
-            data={movieLists}
-            renderItem={renderItem}
-            keyExtractor={(_item, idx) => idx}
-            ListHeaderComponent={Hero}
-            ListHeaderComponentStyle={{ height: windowHeight * 0.8 }}
-          />
-        </View>
+        <FlatList
+          data={movieLists}
+          renderItem={renderItem}
+          keyExtractor={(_item, idx) => idx}
+          ListHeaderComponent={Hero}
+          ListHeaderComponentStyle={{ height: windowHeight * 0.8 }}
+        />
       );
     }
   };

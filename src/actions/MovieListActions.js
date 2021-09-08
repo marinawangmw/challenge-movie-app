@@ -29,34 +29,35 @@ export const setHeroPoster = (heroPoster) => ({
   payload: heroPoster,
 });
 
+const setHeroPosterFromData = (trending, genres, dispatch) => {
+  const posterMovieIndex = Math.floor(Math.random() * trending.results.length);
+  const posterMovie = trending.results[posterMovieIndex];
+
+  const posterGenreIds = posterMovie.genre_ids;
+  const allGenresResult = genres;
+  const posterGenres = allGenresResult?.genres.filter((g) => posterGenreIds.includes(g.id));
+
+  dispatch(
+    setHeroPoster({
+      posterUrl: posterMovie.poster_path,
+      posterGenres,
+    })
+  );
+};
+
 export const fetchMovieListsStartAsync = () => {
-  return async (dispatch, getState) => {
+  return async (dispatch) => {
     dispatch(fetchMovieListsStart());
 
     try {
       const responses = await Promise.all([getTrending(), getRecentlyAdded(), getAllGenre()]);
-      const myList = getState().movieList.myList;
       const trendingNow = responses[0].results.slice(0, 10);
       const recentlyAdded = responses[1].results.slice(0, 10);
 
-      const posterMovieIndex = Math.floor(Math.random() * responses[0].results.length);
-      const posterMovie = responses[0].results[posterMovieIndex];
-
-      const posterGenreIds = posterMovie.genre_ids;
-      const allGenresResult = responses[2];
-      const posterGenres = allGenresResult?.genres.filter((g) => posterGenreIds.includes(g.id));
-
-      dispatch(
-        setHeroPoster({
-          posterUrl: posterMovie.poster_path,
-          posterGenres,
-        })
-      );
+      setHeroPosterFromData(responses[0], responses[2], dispatch);
 
       dispatch(
         fetchMovieListsSuccess([
-          { title: strings.movieLists.myList, movieList: myList },
-
           { title: strings.movieLists.trending, movieList: trendingNow },
 
           { title: strings.movieLists.recentlyAdded, movieList: recentlyAdded },

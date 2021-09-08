@@ -1,7 +1,6 @@
 import { TYPES } from '@/actions/MovieListActions';
 
 const INITIAL_STATE = {
-  isFetching: false,
   errorMessage: undefined,
   myList: [],
   heroPoster: {},
@@ -24,23 +23,20 @@ const subtractMovieFromMyList = (myList, movieToSubtract) => {
 
 export const movieListReducer = (state = INITIAL_STATE, { payload, type }) => {
   switch (type) {
-    case TYPES.FETCH_MOVIE_LISTS_START:
+    case TYPES.FETCH_MOVIE_LISTS_REQUEST:
       return {
         ...state,
-        isFetching: true,
       };
 
     case TYPES.FETCH_MOVIE_LISTS_SUCCESS:
       return {
         ...state,
-        isFetching: false,
         movieLists: payload,
       };
 
-    case TYPES.FETCH_MOVIE_LISTS_FAILURE:
+    case TYPES.FETCH_MOVIE_LISTS_ERROR:
       return {
         ...state,
-        isFetching: false,
         errorMessage: payload,
       };
 

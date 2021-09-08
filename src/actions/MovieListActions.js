@@ -4,14 +4,15 @@ import { strings } from '@/localization';
 export const TYPES = {
   ADD_TO_MY_LIST: 'ADD_TO_MY_LIST',
   REMOVE_FROM_MT_LIST: 'REMOVE_FROM_MT_LIST',
-  FETCH_MOVIE_LISTS_START: 'FETCH_MOVIE_LISTS_START',
+  FETCH_MOVIE_LISTS: 'FETCH_MOVIE_LISTS',
+  FETCH_MOVIE_LISTS_REQUEST: 'FETCH_MOVIE_LISTS_REQUEST',
   FETCH_MOVIE_LISTS_SUCCESS: 'FETCH_MOVIE_LISTS_SUCCESS',
-  FETCH_MOVIE_LISTS_FAILURE: 'FETCH_MOVIE_LISTS_FAILURE',
+  FETCH_MOVIE_LISTS_ERROR: 'FETCH_MOVIE_LISTS_ERROR',
   SET_HERO_POSTER: 'SET_HERO_POSTER',
 };
 
-export const fetchMovieListsStart = () => ({
-  type: TYPES.FETCH_MOVIE_LISTS_START,
+export const fetchMovieListsRequest = () => ({
+  type: TYPES.FETCH_MOVIE_LISTS_REQUEST,
 });
 
 export const fetchMovieListsSuccess = (movieLists) => ({
@@ -19,8 +20,8 @@ export const fetchMovieListsSuccess = (movieLists) => ({
   payload: movieLists,
 });
 
-export const fetchMovieListsFailure = (errorMessage) => ({
-  type: TYPES.FETCH_MOVIE_LISTS_FAILURE,
+export const fetchMovieListsError = (errorMessage) => ({
+  type: TYPES.FETCH_MOVIE_LISTS_ERROR,
   payload: errorMessage,
 });
 
@@ -47,7 +48,7 @@ const setHeroPosterFromData = (trending, genres, dispatch) => {
 
 export const fetchMovieListsStartAsync = () => {
   return async (dispatch) => {
-    dispatch(fetchMovieListsStart());
+    dispatch(fetchMovieListsRequest());
 
     try {
       const responses = await Promise.all([getTrending(), getRecentlyAdded(), getAllGenre()]);
@@ -64,7 +65,7 @@ export const fetchMovieListsStartAsync = () => {
         ])
       );
     } catch (error) {
-      dispatch(fetchMovieListsFailure(error.message));
+      dispatch(fetchMovieListsError(error.message));
     }
   };
 };

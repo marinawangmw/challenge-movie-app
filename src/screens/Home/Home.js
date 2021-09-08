@@ -3,12 +3,14 @@ import { Dimensions, FlatList } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { Hero, MovieList } from '@/components';
 import { Loading } from '@/screens';
-import { fetchMovieListsStartAsync } from '@/actions/MovieListActions';
-import { getMovieLists, isMovieListsFetching } from '@/selectors/MovieListSelectors';
+import { fetchMovieListsStartAsync, TYPES } from '@/actions/MovieListActions';
+import { getMovieLists } from '@/selectors/MovieListSelectors';
+import { isLoadingSelector } from '@/selectors/StatusSelectors';
 
 export function Home() {
   const dispatch = useDispatch();
-  const isFetching = useSelector(isMovieListsFetching);
+  const isLoading = useSelector((state) => isLoadingSelector([TYPES.FETCH_MOVIE_LISTS], state));
+
   const movieLists = useSelector(getMovieLists);
 
   const windowHeight = Dimensions.get('window').height;
@@ -20,7 +22,7 @@ export function Home() {
   const renderItem = (item) => <MovieList item={item.item} />;
 
   const renderHome = () => {
-    if (isFetching) {
+    if (isLoading) {
       return <Loading />;
     }
 

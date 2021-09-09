@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { NAVIGATION } from '@/constants';
 import { MovieCollection } from '@/screens';
 import { getMyList } from '@/selectors/MovieListSelectors';
+import { en } from '@/localization/en';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,7 +19,7 @@ export function MovieCollectionNavigator() {
         options={{ headerShow: true }}
         initialParams={{
           collection: myList,
-          noObjectMessage: "There's no movie added to My List yet",
+          noObjectMessage: en.movieLists.noObjectOnMyList,
         }}
       />
     </Stack.Navigator>

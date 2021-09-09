@@ -3,14 +3,12 @@ import { spacing } from '@/theme/spacing';
 
 export const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
   flatlist: {
     paddingVertical: spacing.xl,
-  },
-  text: {
-    alignSelf: 'center',
+    flexGrow: 1,
   },
 });

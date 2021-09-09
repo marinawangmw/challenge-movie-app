@@ -1,34 +1,37 @@
 import React, { useEffect } from 'react';
-import { View, FlatList, StyleSheet, Text } from 'react-native';
-import { useTheme } from '@react-navigation/native';
+import { View, FlatList, StyleSheet } from 'react-native';
 import { styles } from './MovieCollection.styles';
-import { MovieItem } from '@/components';
+import { MovieItem, MessageBanner } from '@/components';
+import { en } from '@/localization/en';
 
 const numColumns = 3;
 
 export const MovieCollection = ({ navigation, route, noObjectMessage }) => {
-  const { colors } = useTheme();
   const { movieList } = route.params.collection;
-  const message = noObjectMessage || route.params.noObjectMessage || 'Nothing here yet';
+  const message = noObjectMessage || route.params.noObjectMessage || en.movieLists.noObjectMessage;
 
   useEffect(() => {
     navigation.setOptions({ title: route.params.collection.title });
   }, [navigation, route]);
 
+  const renderEmptyMessage = () => (
+    <MessageBanner
+      message={message}
+      customStyles={{
+        messageContainer: styles.container,
+      }}
+    />
+  );
+
   return (
     <View style={styles.container}>
-      {movieList && movieList.length ? (
-        <FlatList
-          data={movieList}
-          renderItem={(item) => <MovieItem item={item} customStyles={movieItemStyles} />}
-          numColumns={numColumns}
-          contentContainerStyle={styles.flatlist}
-        />
-      ) : (
-        <View style={styles.container}>
-          <Text style={{ color: colors.text }}>{message}</Text>
-        </View>
-      )}
+      <FlatList
+        data={movieList}
+        renderItem={(item) => <MovieItem item={item} customStyles={movieItemStyles} />}
+        numColumns={numColumns}
+        contentContainerStyle={styles.flatlist}
+        ListEmptyComponent={renderEmptyMessage}
+      />
     </View>
   );
 };

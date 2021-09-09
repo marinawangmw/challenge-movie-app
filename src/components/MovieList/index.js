@@ -1,9 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, FlatList, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, FlatList, View, TouchableOpacity, Dimensions } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { typography, spacing } from '@/theme';
 import { MovieItem, MessageBanner } from '@/components';
 import { NAVIGATION } from '@/constants';
+import { en } from '@/localization/en';
+
+const windowWidth = Dimensions.get('window').width;
 
 export const MovieList = ({ navigation, item }) => {
   const { colors } = useTheme();
@@ -11,28 +14,31 @@ export const MovieList = ({ navigation, item }) => {
   const handlePress = () => {
     navigation.navigate(NAVIGATION.movieCollection, {
       collection: item,
-      noObjectMessage: "There's no movie added to My List yet",
+      noObjectMessage: en.movieLists.noObjectMessage,
     });
   };
+
+  const renderEmptyMessage = () => (
+    <MessageBanner
+      message={en.movieLists.noObjectMessage}
+      customStyles={{
+        messageContainer: { ...styles.messageContainer, backgroundColor: colors.card },
+      }}
+    />
+  );
 
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={handlePress}>
         <Text style={[styles.title, { color: colors.text }, typography.title]}>{item.title}</Text>
       </TouchableOpacity>
-      {item.movieList.length ? (
-        <FlatList
-          data={item.movieList}
-          renderItem={(movieItem) => <MovieItem item={movieItem} customStyles={movieItemStyles} />}
-          horizontal
-        />
-      ) : (
-        <MessageBanner
-          customStyles={{
-            messageContainer: { ...styles.messageContainer, backgroundColor: colors.card },
-          }}
-        />
-      )}
+      <FlatList
+        data={item.movieList}
+        renderItem={(movieItem) => <MovieItem item={movieItem} customStyles={movieItemStyles} />}
+        horizontal
+        ListEmptyComponent={renderEmptyMessage}
+        contentContainerStyle={styles.flatList}
+      />
     </View>
   );
 };
@@ -42,15 +48,18 @@ const styles = StyleSheet.create({
     margin: spacing.m,
   },
   title: {
-    paddingVertical: 10,
+    paddingVertical: spacing.s,
   },
   messageContainer: {
     height: 120,
-    width: '100%',
+    flexGrow: 1,
     marginVertical: spacing.xs,
     borderRadius: 4,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  flatList: {
+    flexGrow: 1,
   },
 });
 

@@ -1,27 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, FlatList, StyleSheet, Text } from 'react-native';
-import { useSelector } from 'react-redux';
 import { useTheme } from '@react-navigation/native';
 import { styles } from './MovieCollection.styles';
 import { MovieItem } from '@/components';
-import { getMyList } from '@/selectors/MovieListSelectors';
 
-export const MovieCollection = () => {
-  const myList = useSelector(getMyList);
+const numColumns = 3;
+
+export const MovieCollection = ({ navigation, route, noObjectMessage }) => {
   const { colors } = useTheme();
+  const { movieList } = route.params.collection;
+  const message = noObjectMessage || route.params.noObjectMessage || 'Nothing here yet';
+
+  useEffect(() => {
+    navigation.setOptions({ title: route.params.collection.title });
+  }, [navigation, route]);
 
   return (
     <View style={styles.container}>
-      {myList && myList.length ? (
+      {movieList && movieList.length ? (
         <FlatList
-          data={myList.movieList}
+          data={movieList}
           renderItem={(item) => <MovieItem item={item} customStyles={movieItemStyles} />}
-          numColumns={3}
+          numColumns={numColumns}
           contentContainerStyle={styles.flatlist}
         />
       ) : (
         <View style={styles.container}>
-          <Text style={{ color: colors.text }}>There's no movie added to My List yet</Text>
+          <Text style={{ color: colors.text }}>{message}</Text>
         </View>
       )}
     </View>
@@ -38,8 +43,8 @@ const movieItemStyles = StyleSheet.create({
     alignItems: 'center',
   },
   img: {
-    width: '100%',
-    height: '100%',
+    width: 110,
+    height: 200,
     margin: 1,
   },
   banner: {

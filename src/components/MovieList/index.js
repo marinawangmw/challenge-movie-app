@@ -1,15 +1,25 @@
 import React from 'react';
-import { StyleSheet, Text, FlatList, View } from 'react-native';
+import { StyleSheet, Text, FlatList, View, TouchableOpacity } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { typography, spacing } from '@/theme';
 import { MovieItem, MessageBanner } from '@/components';
+import { NAVIGATION } from '@/constants';
 
-export const MovieList = ({ item }) => {
+export const MovieList = ({ navigation, item }) => {
   const { colors } = useTheme();
+
+  const handlePress = () => {
+    navigation.navigate(NAVIGATION.movieCollection, {
+      collection: item,
+      noObjectMessage: "There's no movie added to My List yet",
+    });
+  };
 
   return (
     <View style={styles.container}>
-      <Text style={[styles.title, { color: colors.text }, typography.title]}>{item.title}</Text>
+      <TouchableOpacity onPress={handlePress}>
+        <Text style={[styles.title, { color: colors.text }, typography.title]}>{item.title}</Text>
+      </TouchableOpacity>
       {item.movieList.length ? (
         <FlatList
           data={item.movieList}

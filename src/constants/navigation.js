@@ -4,4 +4,5 @@ export const NAVIGATION = {
   profile: 'Profile',
   search: 'Search',
   myList: 'My List',
+  movieCollection: 'MovieCollection',
 };

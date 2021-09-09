@@ -6,7 +6,7 @@ import { Loading } from '@/screens';
 import { fetchMovieListsStartAsync } from '@/actions/MovieListActions';
 import { getMovieLists, isMovieListsFetching } from '@/selectors/MovieListSelectors';
 
-export function Home() {
+export function Home({ navigation }) {
   const dispatch = useDispatch();
   const isFetching = useSelector(isMovieListsFetching);
   const movieLists = useSelector(getMovieLists);
@@ -17,7 +17,7 @@ export function Home() {
     dispatch(fetchMovieListsStartAsync());
   }, [dispatch]);
 
-  const renderItem = (item) => <MovieList item={item.item} />;
+  const renderItem = (item) => <MovieList item={item.item} navigation={navigation} />;
 
   const renderHome = () => {
     if (isFetching) {

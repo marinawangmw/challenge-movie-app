@@ -30,5 +30,8 @@ export const en = {
     myList: 'My List',
     trending: 'Trending Now',
     recentlyAdded: 'Recently Added',
+    noObjectOnMyList: "There's no movie added to My List yet",
+    noObjectMessage: 'Nothing here yet',
+    movyOriginal: 'Movy Original',
   },
 };

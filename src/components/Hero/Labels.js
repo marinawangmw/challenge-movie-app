@@ -8,12 +8,13 @@ const Labels = ({ labels }) => {
 
   return (
     <View style={styles.container}>
-      {labels.slice(0, 3).map((label, idx) => (
-        <View style={styles.row} key={idx}>
-          {idx > 0 && <Text style={[styles.divider, { color: colors.text }]}>{'\u2B24'}</Text>}
-          <Text style={[{ color: colors.text }, typography.text]}>{label.name}</Text>
-        </View>
-      ))}
+      {labels &&
+        labels.slice(0, 3).map((label, idx) => (
+          <View style={styles.row} key={idx}>
+            {idx > 0 && <Text style={[styles.divider, { color: colors.text }]}>{'\u2B24'}</Text>}
+            <Text style={[{ color: colors.text }, typography.text]}>{label.name}</Text>
+          </View>
+        ))}
     </View>
   );
 };

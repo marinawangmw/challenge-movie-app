@@ -7,7 +7,7 @@ import { fetchMovieListsStartAsync, TYPES } from '@/actions/MovieListActions';
 import { getMovieLists } from '@/selectors/MovieListSelectors';
 import { isLoadingSelector } from '@/selectors/StatusSelectors';
 
-export function Home() {
+export function Home({ navigation }) {
   const dispatch = useDispatch();
   const isLoading = useSelector((state) => isLoadingSelector([TYPES.FETCH_MOVIE_LISTS], state));
 
@@ -19,7 +19,7 @@ export function Home() {
     dispatch(fetchMovieListsStartAsync());
   }, [dispatch]);
 
-  const renderItem = (item) => <MovieList item={item.item} />;
+  const renderItem = (item) => <MovieList item={item.item} navigation={navigation} />;
 
   const renderHome = () => {
     if (isLoading) {

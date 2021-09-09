@@ -1,47 +1,44 @@
 import React from 'react';
-import { StyleSheet, Text, FlatList, Image, View } from 'react-native';
-import { Config } from 'react-native-config';
+import { StyleSheet, Text, FlatList, View, TouchableOpacity, Dimensions } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { typography, spacing } from '@/theme';
-import { movie } from '@/assets';
+import { MovieItem, MessageBanner } from '@/components';
+import { NAVIGATION } from '@/constants';
+import { en } from '@/localization/en';
 
-export const MovieList = ({ item }) => {
+const windowWidth = Dimensions.get('window').width;
+
+export const MovieList = ({ navigation, item }) => {
   const { colors } = useTheme();
 
-  const renderCarousel = (movieList) => {
-    return (
-      <>
-        {movieList.item.poster_path ? (
-          <Image
-            source={{ uri: Config.IMAGE_API_BASE_URL + movieList.item.poster_path }}
-            resizeMode="cover"
-            style={styles.img}
-            accessibilityIgnoresInvertColors
-          />
-        ) : (
-          <View
-            style={[
-              styles.img,
-              styles.unknownContainer,
-              { backgroundColor: colors.posterBackground },
-            ]}
-          >
-            <Image
-              source={movie}
-              resizeMode="cover"
-              style={styles.unknownImg}
-              accessibilityIgnoresInvertColors
-            />
-          </View>
-        )}
-      </>
-    );
+  const handlePress = () => {
+    navigation.navigate(NAVIGATION.movieCollection, {
+      collection: item,
+      noObjectMessage: en.movieLists.noObjectMessage,
+    });
   };
+
+  const renderEmptyMessage = () => (
+    <MessageBanner
+      message={en.movieLists.noObjectMessage}
+      customStyles={{
+        messageContainer: { ...styles.messageContainer, backgroundColor: colors.card },
+      }}
+    />
+  );
 
   return (
     <View style={styles.container}>
-      <Text style={[styles.title, { color: colors.text }, typography.title]}>{item.title}</Text>
-      <FlatList data={item.movieList} renderItem={renderCarousel} horizontal />
+      <TouchableOpacity onPress={handlePress}>
+        <Text style={[styles.title, { color: colors.text }, typography.title]}>{item.title}</Text>
+      </TouchableOpacity>
+      <FlatList
+        data={item.movieList}
+        renderItem={(movieItem) => <MovieItem item={movieItem} customStyles={movieItemStyles} />}
+        horizontal
+        ListEmptyComponent={renderEmptyMessage}
+        contentContainerStyle={styles.flatList}
+      />
     </View>
   );
 };
@@ -51,19 +48,46 @@ const styles = StyleSheet.create({
     margin: spacing.m,
   },
   title: {
-    marginVertical: spacing.s,
+    paddingVertical: spacing.s,
+  },
+  messageContainer: {
+    height: 120,
+    flexGrow: 1,
+    marginVertical: spacing.xs,
+    borderRadius: 4,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  flatList: {
+    flexGrow: 1,
+  },
+});
+
+const movieItemStyles = StyleSheet.create({
+  poster: {
+    width: 90,
+    height: 150,
+    margin: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   img: {
     width: 90,
     height: 150,
     margin: 1,
   },
-  unknownContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
+  banner: {
+    zIndex: 2,
+    position: 'absolute',
+    bottom: spacing.m,
+    paddingHorizontal: spacing.xs,
+    paddingVertical: 1,
+    alignSelf: 'center',
+    borderRadius: 1.25,
   },
-  unknownImg: {
-    width: 50,
-    height: 50,
+  bannerLabel: {
+    fontSize: 4.67,
+    lineHeight: 5.47,
+    fontWeight: 'bold',
   },
 });

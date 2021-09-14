@@ -32,7 +32,7 @@ export function Home({ navigation }) {
           data={movieLists}
           renderItem={renderItem}
           keyExtractor={(_item, idx) => idx}
-          ListHeaderComponent={Hero}
+          ListHeaderComponent={() => <Hero navigation={navigation} />}
           ListHeaderComponentStyle={{ height: windowHeight * 0.8 }}
         />
       );

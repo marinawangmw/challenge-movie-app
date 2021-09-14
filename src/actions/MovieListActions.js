@@ -1,4 +1,9 @@
-import { getTrending, getRecentlyAdded, getAllGenre } from '@/controllers/MovieController';
+import {
+  getTrending,
+  getRecentlyAdded,
+  getAllGenre,
+  getSimilarMovies,
+} from '@/controllers/MovieController';
 import { strings } from '@/localization';
 
 export const TYPES = {
@@ -9,6 +14,10 @@ export const TYPES = {
   FETCH_MOVIE_LISTS_SUCCESS: 'FETCH_MOVIE_LISTS_SUCCESS',
   FETCH_MOVIE_LISTS_ERROR: 'FETCH_MOVIE_LISTS_ERROR',
   SET_HERO_POSTER: 'SET_HERO_POSTER',
+  FETCH_SIMILAR_MOVIES: 'FETCH_SIMILAR_MOVIES',
+  FETCH_SIMILAR_MOVIES_REQUEST: 'FETCH_SIMILAR_MOVIES_REQUEST',
+  FETCH_SIMILAR_MOVIES_SUCCESS: 'FETCH_SIMILAR_MOVIES_SUCCESS',
+  FETCH_SIMILAR_MOVIES_ERROR: 'FETCH_SIMILAR_MOVIES_ERROR',
 };
 
 export const fetchMovieListsRequest = () => ({
@@ -40,7 +49,7 @@ const setHeroPosterFromData = (trending, genres, dispatch) => {
 
   dispatch(
     setHeroPoster({
-      posterUrl: posterMovie.poster_path,
+      posterMovie,
       posterGenres,
     })
   );
@@ -54,7 +63,6 @@ export const fetchMovieListsStartAsync = () => {
       const responses = await Promise.all([getTrending(), getRecentlyAdded(), getAllGenre()]);
       const trendingNow = responses[0].results.slice(0, 10);
       const recentlyAdded = responses[1].results.slice(0, 10);
-
       setHeroPosterFromData(responses[0], responses[2], dispatch);
 
       dispatch(
@@ -65,6 +73,7 @@ export const fetchMovieListsStartAsync = () => {
         ])
       );
     } catch (error) {
+      console.log('error!', error);
       dispatch(fetchMovieListsError(error.message));
     }
   };
@@ -79,3 +88,32 @@ export const removeFromMyList = (movie) => ({
   type: TYPES.REMOVE_FROM_MT_LIST,
   payload: movie,
 });
+
+export const fetchSimilarMoviesRequest = () => ({
+  type: TYPES.FETCH_SIMILAR_MOVIES_REQUEST,
+});
+
+export const fetchSimilarMoviesSuccess = (movieLists) => ({
+  type: TYPES.FETCH_SIMILAR_MOVIES_SUCCESS,
+  payload: movieLists,
+});
+
+export const fetchSimilarMoviesError = (errorMessage) => ({
+  type: TYPES.FETCH_SIMILAR_MOVIES_ERROR,
+  payload: errorMessage,
+});
+
+export const fetchSimilarMoviesStartAsync = (movieId) => {
+  return async (dispatch) => {
+    if (movieId) {
+      dispatch(fetchSimilarMoviesRequest());
+      try {
+        const similarMovies = await getSimilarMovies(movieId);
+        dispatch(fetchSimilarMoviesSuccess(similarMovies));
+      } catch (error) {
+        console.log('error!', error);
+        dispatch(fetchSimilarMoviesError(error.message));
+      }
+    }
+  };
+};

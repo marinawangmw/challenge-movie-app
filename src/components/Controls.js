@@ -2,20 +2,15 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { spacing, typography } from '@/theme';
-import { addIcon, playIcon, infoIcon } from '@/assets';
 import { strings } from '@/localization';
 
-const Controls = () => {
+export const Controls = ({ controlDatas, controlStyles }) => {
   const { colors } = useTheme();
-  const controlDatas = [
-    { icon: addIcon, label: strings.controls.myList },
-    { icon: playIcon, label: strings.controls.play },
-    { icon: infoIcon, label: strings.controls.info },
-  ];
+  const styles = { ...defaultStyles, ...controlStyles };
 
   const renderControls = (control, idx) => (
     <View style={styles.controlWrapper} key={idx}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={control.handleControlPress}>
         <Image
           source={control.icon}
           style={[styles.icon, control.label === strings.controls.play && styles.playIcon]}
@@ -34,23 +29,7 @@ const Controls = () => {
   );
 };
 
-export default Controls;
-
-export const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    width: '100%',
-    justifyContent: 'space-around',
-    paddingHorizontal: spacing.xl,
-    marginVertical: spacing.xs,
-  },
-  controlWrapper: {
-    padding: spacing.xs,
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
-  },
+export const defaultStyles = StyleSheet.create({
   icon: {
     width: 28,
     height: 28,

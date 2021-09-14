@@ -8,3 +8,4 @@ export { MovieList } from '@/components/MovieList';
 export { SpecialBanner } from '@/components/SpecialBanner';
 export { MovieItem } from '@/components/MovieItem';
 export { MessageBanner } from '@/components/MessageBanner';
+export { Controls } from '@/components/Controls';

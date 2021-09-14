@@ -18,3 +18,7 @@ export const getMovieLists = (state) => {
 export const getHeroPoster = (state) => {
   return state.movieList.heroPoster;
 };
+
+export const getSimilarMovies = (state) => {
+  return state.movieList.similarMovies;
+};

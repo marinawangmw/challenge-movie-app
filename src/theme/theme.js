@@ -11,6 +11,9 @@ const defaultColors = {
   card: '#171717',
   background: '#000000',
   posterBackground: '#f2f2f2',
+  highlight: '#57e45b',
+  bannerBackground: '#272926',
+  bannerText: '#9c9c9c',
 };
 
 export const theme = {

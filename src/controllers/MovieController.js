@@ -19,3 +19,11 @@ export function getRecentlyAdded() {
 export function getAllGenre() {
   return HttpClient.get('/genre/movie/list');
 }
+
+export function getSimilarMovies(id) {
+  return HttpClient.get(`/movie/${id}/similar`, {
+    params: {
+      page: 1,
+    },
+  });
+}

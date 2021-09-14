@@ -34,4 +34,11 @@ export const en = {
     noObjectMessage: 'Nothing here yet',
     movyOriginal: 'Movy Original',
   },
+  movieDetails: {
+    approval: '% Approval',
+    forAllAges: 'For all ages',
+    watchTrailer: 'Watch Trailer',
+    noObjectMessage: 'No similar movies found',
+    title: 'Similar Movies',
+  },
 };

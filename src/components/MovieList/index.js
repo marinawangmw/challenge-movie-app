@@ -1,12 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, FlatList, View, TouchableOpacity, Dimensions } from 'react-native';
+import { StyleSheet, Text, FlatList, View, TouchableOpacity } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { typography, spacing } from '@/theme';
 import { MovieItem, MessageBanner } from '@/components';
 import { NAVIGATION } from '@/constants';
 import { en } from '@/localization/en';
-
-const windowWidth = Dimensions.get('window').width;
 
 export const MovieList = ({ navigation, item }) => {
   const { colors } = useTheme();
@@ -34,7 +32,9 @@ export const MovieList = ({ navigation, item }) => {
       </TouchableOpacity>
       <FlatList
         data={item.movieList}
-        renderItem={(movieItem) => <MovieItem item={movieItem} customStyles={movieItemStyles} />}
+        renderItem={(movieItem) => (
+          <MovieItem item={movieItem} customStyles={movieItemStyles} navigation={navigation} />
+        )}
         horizontal
         ListEmptyComponent={renderEmptyMessage}
         contentContainerStyle={styles.flatList}

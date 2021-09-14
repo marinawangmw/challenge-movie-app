@@ -5,6 +5,7 @@ const INITIAL_STATE = {
   myList: [],
   heroPoster: {},
   movieLists: [],
+  similarMovies: [],
 };
 
 const addMovieToMyList = (myList, movieToAdd) => {
@@ -53,6 +54,23 @@ export const movieListReducer = (state = INITIAL_STATE, { payload, type }) => {
       return {
         ...state,
         heroPoster: payload,
+      };
+
+    case TYPES.FETCH_SIMILAR_MOVIES_REQUEST:
+      return {
+        ...state,
+      };
+
+    case TYPES.FETCH_SIMILAR_MOVIES_SUCCESS:
+      return {
+        ...state,
+        similarMovies: payload,
+      };
+
+    case TYPES.FETCH_SIMILAR_MOVIES_ERROR:
+      return {
+        ...state,
+        errorMessage: payload,
       };
 
     default:

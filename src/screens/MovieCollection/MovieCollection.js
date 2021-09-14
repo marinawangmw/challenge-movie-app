@@ -3,11 +3,12 @@ import { View, FlatList, StyleSheet } from 'react-native';
 import { styles } from './MovieCollection.styles';
 import { MovieItem, MessageBanner } from '@/components';
 import { en } from '@/localization/en';
+import { spacing } from '@/theme';
 
 const numColumns = 3;
 
 export const MovieCollection = ({ navigation, route, noObjectMessage }) => {
-  const { movieList } = route.params.collection;
+  const { collection } = route.params;
   const message = noObjectMessage || route.params.noObjectMessage || en.movieLists.noObjectMessage;
 
   useEffect(() => {
@@ -26,8 +27,10 @@ export const MovieCollection = ({ navigation, route, noObjectMessage }) => {
   return (
     <View style={styles.container}>
       <FlatList
-        data={movieList}
-        renderItem={(item) => <MovieItem item={item} customStyles={movieItemStyles} />}
+        data={collection}
+        renderItem={(item) => (
+          <MovieItem item={item} customStyles={movieItemStyles} navigation={navigation} />
+        )}
         numColumns={numColumns}
         contentContainerStyle={styles.flatlist}
         ListEmptyComponent={renderEmptyMessage}
@@ -53,8 +56,8 @@ const movieItemStyles = StyleSheet.create({
   banner: {
     zIndex: 2,
     position: 'absolute',
-    bottom: 30,
-    paddingHorizontal: 15,
+    bottom: spacing.l,
+    paddingHorizontal: spacing.s,
     paddingVertical: 1,
     alignSelf: 'center',
     borderRadius: 1.57,

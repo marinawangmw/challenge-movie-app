@@ -20,7 +20,7 @@ export const MovieItem = ({ item, customStyles, navigation }) => {
   return (
     <>
       {item && item.item.poster_path ? (
-        <TouchableOpacity onPress={() => handleNavigate()} style={styles.poster}>
+        <TouchableOpacity onPress={handleNavigate} style={styles.poster}>
           <ImageBackground
             source={{ uri: Config.IMAGE_API_BASE_URL + item.item.poster_path }}
             resizeMode="cover"

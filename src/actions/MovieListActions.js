@@ -73,7 +73,6 @@ export const fetchMovieListsStartAsync = () => {
         ])
       );
     } catch (error) {
-      console.log('error!', error);
       dispatch(fetchMovieListsError(error.message));
     }
   };
@@ -111,7 +110,6 @@ export const fetchSimilarMoviesStartAsync = (movieId) => {
         const similarMovies = await getSimilarMovies(movieId);
         dispatch(fetchSimilarMoviesSuccess(similarMovies));
       } catch (error) {
-        console.log('error!', error);
         dispatch(fetchSimilarMoviesError(error.message));
       }
     }

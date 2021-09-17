@@ -20,7 +20,7 @@ export const MovieDetail = ({ navigation, route }) => {
   const { colors } = useTheme();
   const dispatch = useDispatch();
   const isLoading = useSelector((state) => isLoadingSelector([TYPES.FETCH_SIMILAR_MOVIES], state));
-  const similarMovies = useSelector(getSimilarMovies).results.slice(0, 10);
+  const similarMovies = useSelector(getSimilarMovies);
 
   useEffect(() => {
     dispatch(fetchSimilarMoviesStartAsync(movieDetails.id));
@@ -40,7 +40,7 @@ export const MovieDetail = ({ navigation, route }) => {
     return <Loading />;
   }
 
-  if (similarMovies && similarMovies.length) {
+  if (similarMovies.results && similarMovies.results.length) {
     return (
       <ScrollView>
         <Image
@@ -85,7 +85,7 @@ export const MovieDetail = ({ navigation, route }) => {
               {en.movieDetails.title}
             </Text>
             <FlatList
-              data={similarMovies}
+              data={similarMovies.results.slice(0, 10)}
               renderItem={(movieItem) => (
                 <MovieItem
                   item={movieItem}

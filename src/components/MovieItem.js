@@ -25,7 +25,6 @@ export const MovieItem = ({ item, customStyles, navigation }) => {
             source={{ uri: Config.IMAGE_API_BASE_URL + item.item.poster_path }}
             resizeMode="cover"
             style={styles.img}
-            accessibilityIgnoresInvertColors
           >
             <SpecialBanner
               styles={{

@@ -3,21 +3,30 @@ import {
   getRecentlyAdded,
   getAllGenre,
   getSimilarMovies,
+  getSearchesResult,
 } from '@/controllers/MovieController';
 import { strings } from '@/localization';
 
 export const TYPES = {
   ADD_TO_MY_LIST: 'ADD_TO_MY_LIST',
   REMOVE_FROM_MT_LIST: 'REMOVE_FROM_MT_LIST',
+
   FETCH_MOVIE_LISTS: 'FETCH_MOVIE_LISTS',
   FETCH_MOVIE_LISTS_REQUEST: 'FETCH_MOVIE_LISTS_REQUEST',
   FETCH_MOVIE_LISTS_SUCCESS: 'FETCH_MOVIE_LISTS_SUCCESS',
   FETCH_MOVIE_LISTS_ERROR: 'FETCH_MOVIE_LISTS_ERROR',
+
   SET_HERO_POSTER: 'SET_HERO_POSTER',
+
   FETCH_SIMILAR_MOVIES: 'FETCH_SIMILAR_MOVIES',
   FETCH_SIMILAR_MOVIES_REQUEST: 'FETCH_SIMILAR_MOVIES_REQUEST',
   FETCH_SIMILAR_MOVIES_SUCCESS: 'FETCH_SIMILAR_MOVIES_SUCCESS',
   FETCH_SIMILAR_MOVIES_ERROR: 'FETCH_SIMILAR_MOVIES_ERROR',
+
+  SEARCH_MOVIES: 'SEARCH_MOVIES',
+  SEARCH_MOVIES_REQUEST: 'SEARCH_MOVIES_REQUEST',
+  SEARCH_MOVIES_SUCCESS: 'SEARCH_MOVIES_SUCCESS',
+  SEARCH_MOVIES_ERROR: 'SEARCH_MOVIES_ERROR',
 };
 
 export const fetchMovieListsRequest = () => ({
@@ -111,6 +120,36 @@ export const fetchSimilarMoviesStartAsync = (movieId) => {
         dispatch(fetchSimilarMoviesSuccess(similarMovies));
       } catch (error) {
         dispatch(fetchSimilarMoviesError(error.message));
+      }
+    }
+  };
+};
+
+export const searchMoviesRequest = () => ({
+  type: TYPES.SEARCH_MOVIES_REQUEST,
+});
+
+export const searchMoviesSuccess = (movieLists) => ({
+  type: TYPES.SEARCH_MOVIES_SUCCESS,
+  payload: movieLists,
+});
+
+export const searchMoviesError = (errorMessage) => ({
+  type: TYPES.SEARCH_MOVIES_ERROR,
+  payload: errorMessage,
+});
+
+export const searchMoviesStartAsync = (query) => {
+  return async (dispatch) => {
+    if (query) {
+      dispatch(searchMoviesRequest());
+
+      try {
+        const searchResult = await getSearchesResult(query);
+
+        dispatch(searchMoviesSuccess(searchResult.results));
+      } catch (e) {
+        dispatch(searchMoviesError(e));
       }
     }
   };

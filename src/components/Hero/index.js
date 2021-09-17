@@ -34,33 +34,37 @@ export const Hero = ({ navigation }) => {
     { icon: infoIcon, label: strings.controls.info, handleControlPress: handleInfoIconPress },
   ];
 
-  return (
-    <View style={[styles.container, { backgroundColor: colors.primary }]}>
-      <ImageBackground
-        source={{ uri: Config.IMAGE_API_BASE_URL + heroPoster.posterMovie.poster_path }}
-        resizeMode="cover"
-        style={styles.imgBg}
-      >
-        <LinearGradient
-          locations={[0.0001, 1]}
-          colors={['rgba(0, 0, 0, 0.0001)', '#000']}
-          style={styles.gradient}
+  if (heroPoster && heroPoster.posterMovie) {
+    return (
+      <View style={[styles.container, { backgroundColor: colors.primary }]}>
+        <ImageBackground
+          source={{ uri: Config.IMAGE_API_BASE_URL + heroPoster.posterMovie.poster_path }}
+          resizeMode="cover"
+          style={styles.imgBg}
         >
-          <Header />
-          <View style={styles.bottomContainer}>
-            <Labels labels={heroPoster.posterGenres} />
-            <SpecialBanner
-              styles={{
-                banner: { ...styles.banner, backgroundColor: `${colors.secondary}4A` },
-                bannerLabel: [styles.bannerLabel, typography.label, { color: colors.secondary }],
-              }}
-            />
-            <Controls controlDatas={controlDatas} controlStyles={controlStyles} />
-          </View>
-        </LinearGradient>
-      </ImageBackground>
-    </View>
-  );
+          <LinearGradient
+            locations={[0.0001, 1]}
+            colors={['rgba(0, 0, 0, 0.0001)', '#000']}
+            style={styles.gradient}
+          >
+            <Header />
+            <View style={styles.bottomContainer}>
+              <Labels labels={heroPoster.posterGenres} />
+              <SpecialBanner
+                styles={{
+                  banner: { ...styles.banner, backgroundColor: `${colors.secondary}4A` },
+                  bannerLabel: [styles.bannerLabel, typography.label, { color: colors.secondary }],
+                }}
+              />
+              <Controls controlDatas={controlDatas} controlStyles={controlStyles} />
+            </View>
+          </LinearGradient>
+        </ImageBackground>
+      </View>
+    );
+  }
+
+  return null;
 };
 
 const styles = StyleSheet.create({

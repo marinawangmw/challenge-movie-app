@@ -22,3 +22,7 @@ export const getHeroPoster = (state) => {
 export const getSimilarMovies = (state) => {
   return state.movieList.similarMovies;
 };
+
+export const getSearchResults = (state) => {
+  return state.movieList.searchResults;
+};

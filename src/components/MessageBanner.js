@@ -7,7 +7,7 @@ export const MessageBanner = ({ message = en.movieLists.noObjectOnMyList, custom
   const { colors } = useTheme();
 
   return (
-    <View style={customStyles.messageContainer}>
+    <View style={customStyles?.messageContainer}>
       <Text style={{ color: colors.text }}>{message}</Text>
     </View>
   );

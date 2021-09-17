@@ -5,7 +5,7 @@ import { MovieItem, MessageBanner } from '@/components';
 import { en } from '@/localization/en';
 import { spacing } from '@/theme';
 
-const numColumns = 3;
+const NumColumns = 3;
 
 export const MovieCollection = ({ navigation, route, noObjectMessage }) => {
   const { collection } = route.params;
@@ -23,7 +23,7 @@ export const MovieCollection = ({ navigation, route, noObjectMessage }) => {
       }}
     />
   );
-  console.log(collection);
+
   return (
     <View style={styles.container}>
       <FlatList
@@ -31,7 +31,7 @@ export const MovieCollection = ({ navigation, route, noObjectMessage }) => {
         renderItem={(item) => (
           <MovieItem item={item} customStyles={movieItemStyles} navigation={navigation} />
         )}
-        numColumns={numColumns}
+        numColumns={NumColumns}
         contentContainerStyle={styles.flatlist}
         ListEmptyComponent={renderEmptyMessage}
       />

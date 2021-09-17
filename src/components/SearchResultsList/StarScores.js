@@ -2,40 +2,38 @@ import React from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 import { starIcon, halfStarIcon } from '@/assets';
 
+const ScoreTenBase = 10;
+const ScoreFiveBase = 5;
+const HalfStarMinimum = 5;
+
 export const StarScores = ({ voteAverage = 0 }) => {
-  const score = (voteAverage / 10) * 5;
+  const score = (voteAverage / ScoreTenBase) * ScoreFiveBase;
   const scoreInt = Math.trunc(score);
   const scoreDecimals = score - scoreInt;
   const scoreDecimalFirstDigit = scoreDecimals.toString().slice(2, 3);
 
   const starPlaceholder = Array(scoreInt).fill(1);
 
-  if (scoreDecimalFirstDigit >= 5) {
+  if (scoreDecimalFirstDigit >= HalfStarMinimum) {
     starPlaceholder.push(0);
   }
+
+  const starImage = (idx, icon) => (
+    <Image
+      key={idx}
+      source={icon}
+      accessibilityIgnoresInvertColors
+      resizeMode="cover"
+      style={styles.starIcon}
+    />
+  );
 
   const renderStars = () => {
     return starPlaceholder.map((star, idx) => {
       if (star) {
-        return (
-          <Image
-            key={idx}
-            source={starIcon}
-            accessibilityIgnoresInvertColors
-            resizeMode="cover"
-            style={styles.starIcon}
-          />
-        );
+        return starImage(idx, starIcon);
       }
-      return (
-        <Image
-          key={idx}
-          source={halfStarIcon}
-          accessibilityIgnoresInvertColors
-          resizeMode="cover"
-          style={styles.starIcon}
-        />
-      );
+      return starImage(idx, halfStarIcon);
     });
   };
 

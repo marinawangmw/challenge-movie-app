@@ -10,7 +10,8 @@ import { getMovieLists, getSearchResults } from '@/selectors/MovieListSelectors'
 import { successSelector } from '@/selectors/StatusSelectors';
 import { en } from '@/localization/en';
 
-const searchDebounce = 300;
+const SearchDebounce = 300;
+const MinCharForSearch = 3;
 
 export const Search = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -25,11 +26,11 @@ export const Search = ({ navigation }) => {
   const handleInputChange = async (text) => {
     setInput(text);
 
-    if (text.trim !== '' && text.length >= 3) {
+    if (text.trim() !== '' && text.length >= MinCharForSearch) {
       try {
         debounce(() => {
           dispatch(searchMoviesStartAsync(text));
-        }, searchDebounce)();
+        }, SearchDebounce)();
       } catch (e) {
         console.log(e);
       }

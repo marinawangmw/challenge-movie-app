@@ -41,4 +41,9 @@ export const en = {
     noObjectMessage: 'No similar movies found',
     title: 'Similar Movies',
   },
+  search: {
+    inputPlaceholder: 'Search for a movie that you love...',
+    popularSearches: 'Popular Searches',
+    noObjectMessage: 'Nothing found',
+  },
 };

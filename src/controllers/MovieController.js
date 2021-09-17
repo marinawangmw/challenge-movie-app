@@ -27,3 +27,13 @@ export function getSimilarMovies(id) {
     },
   });
 }
+
+export function getSearchesResult(query) {
+  return HttpClient.get('/search/movie', {
+    params: {
+      page: 1,
+      include_adult: false,
+      query,
+    },
+  });
+}

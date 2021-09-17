@@ -8,3 +8,6 @@ export { default as infoIcon } from '@/assets/info.png';
 export { default as playIcon } from '@/assets/play.png';
 export { default as addIcon } from '@/assets/plus.png';
 export { default as movie } from '@/assets/movie.png';
+export { default as audioIcon } from '@/assets/mic.png';
+export { default as starIcon } from '@/assets/star.png';
+export { default as halfStarIcon } from '@/assets/halfStar.png';

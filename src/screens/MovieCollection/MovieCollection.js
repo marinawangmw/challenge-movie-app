@@ -23,11 +23,11 @@ export const MovieCollection = ({ navigation, route, noObjectMessage }) => {
       }}
     />
   );
-
+  console.log(collection);
   return (
     <View style={styles.container}>
       <FlatList
-        data={collection}
+        data={collection.movieList}
         renderItem={(item) => (
           <MovieItem item={item} customStyles={movieItemStyles} navigation={navigation} />
         )}

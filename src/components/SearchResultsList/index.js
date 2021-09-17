@@ -12,7 +12,7 @@ import { isLoadingSelector } from '@/selectors/StatusSelectors';
 
 export const SearchResultsList = ({ data, navigation, title }) => {
   const { colors } = useTheme();
-  const isLoading = useSelector((state) => isLoadingSelector([TYPES.FETCH_MOVIE_LISTS], state));
+  const isLoading = useSelector((state) => isLoadingSelector([TYPES.SEARCH_MOVIES], state));
 
   const renderEmptyMessage = () => {
     return <MessageBanner message={en.search.noObjectMessage} customStyles={message} />;
@@ -20,7 +20,7 @@ export const SearchResultsList = ({ data, navigation, title }) => {
 
   const renderHeader = () => {
     if (isLoading) {
-      return <Loading />;
+      return <Loading customStyles={loader} />;
     }
 
     if (title) {
@@ -49,6 +49,15 @@ export const styles = StyleSheet.create({
   },
   title: {
     paddingVertical: spacing.s,
+  },
+});
+
+export const loader = StyleSheet.create({
+  container: {
+    flexGrow: 1,
+    padding: spacing.m,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 

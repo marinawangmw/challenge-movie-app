@@ -1,0 +1,814 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Search bar component renders correctly and match snapshot 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "paddingHorizontal": 8,
+        "paddingVertical": 24,
+        "width": "100%",
+      },
+      Object {
+        "backgroundColor": "rgb(255, 255, 255)",
+      },
+    ]
+  }
+>
+  <Image
+    accessibilityIgnoresInvertColors={true}
+    source={
+      Object {
+        "testUri": "../../../src/assets/search.png",
+      }
+    }
+    style={
+      Object {
+        "height": 15,
+        "marginHorizontal": 16,
+        "resizeMode": "contain",
+        "width": 15,
+      }
+    }
+  />
+  <TextInput
+    allowFontScaling={true}
+    autoFocus={true}
+    onChangeText={[Function]}
+    placeholder="Search for a movie that you love..."
+    placeholderTextColor="rgb(28, 28, 30)"
+    rejectResponderTermination={true}
+    style={
+      Array [
+        Object {
+          "flex": 1,
+        },
+        Object {
+          "color": "rgb(28, 28, 30)",
+        },
+        Object {
+          "fontSize": 16,
+          "fontWeight": "400",
+        },
+      ]
+    }
+    testID="searchInput"
+    underlineColorAndroid="transparent"
+    value=""
+  />
+  <Image
+    accessibilityIgnoresInvertColors={true}
+    source={
+      Object {
+        "testUri": "../../../src/assets/mic.png",
+      }
+    }
+    style={
+      Object {
+        "height": 15,
+        "marginHorizontal": 16,
+        "resizeMode": "contain",
+        "width": 15,
+      }
+    }
+  />
+</View>
+`;
+
+exports[`Search component renders correcly with data on hero poster 1`] = `null`;
+
+exports[`Search component renders correcly with empty hero poster 1`] = `null`;
+
+exports[`Search results item renders correctly and match snapshot 1`] = `
+<View
+  accessible={true}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "backgroundColor": "rgb(255, 255, 255)",
+      "flexDirection": "row",
+      "margin": 2,
+      "opacity": 1,
+    }
+  }
+>
+  <Image
+    accessibilityIgnoresInvertColors={true}
+    resizeMode="cover"
+    source={
+      Object {
+        "uri": "undefined/aJbeDPUwDe9MLpseTFrNTBaQPzf.jpg",
+      }
+    }
+    style={
+      Object {
+        "height": 95,
+        "width": 160,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "flexDirection": "column",
+        "flexWrap": "wrap",
+        "padding": 16,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "paddingBottom": 16,
+          "width": "100%",
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "fontSize": 16,
+              "fontWeight": "400",
+            },
+            Object {
+              "color": "rgb(28, 28, 30)",
+            },
+            Object {
+              "flexWrap": "wrap",
+            },
+          ]
+        }
+      >
+        The Woman in Black
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+          }
+        }
+      >
+        <Image
+          accessibilityIgnoresInvertColors={true}
+          resizeMode="cover"
+          source={
+            Object {
+              "testUri": "../../../src/assets/star.png",
+            }
+          }
+          style={
+            Object {
+              "height": 15,
+              "marginRight": 5,
+              "width": 15,
+            }
+          }
+          testID="stars"
+        />
+        <Image
+          accessibilityIgnoresInvertColors={true}
+          resizeMode="cover"
+          source={
+            Object {
+              "testUri": "../../../src/assets/star.png",
+            }
+          }
+          style={
+            Object {
+              "height": 15,
+              "marginRight": 5,
+              "width": 15,
+            }
+          }
+          testID="stars"
+        />
+        <Image
+          accessibilityIgnoresInvertColors={true}
+          resizeMode="cover"
+          source={
+            Object {
+              "testUri": "../../../src/assets/star.png",
+            }
+          }
+          style={
+            Object {
+              "height": 15,
+              "marginRight": 5,
+              "width": 15,
+            }
+          }
+          testID="stars"
+        />
+      </View>
+      <Image
+        accessibilityIgnoresInvertColors={true}
+        resizeMode="contain"
+        source={
+          Object {
+            "testUri": "../../../src/assets/play.png",
+          }
+        }
+        style={
+          Object {
+            "height": 20,
+            "width": 20,
+          }
+        }
+      />
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Search results list renders correctly and match snapshot 1`] = `
+<RCTScrollView
+  ListEmptyComponent={[Function]}
+  ListHeaderComponent={[Function]}
+  contentContainerStyle={
+    Object {
+      "flexGrow": 1,
+      "padding": 16,
+    }
+  }
+  disableVirtualization={false}
+  getItem={[Function]}
+  getItemCount={[Function]}
+  horizontal={false}
+  initialNumToRender={10}
+  keyExtractor={[Function]}
+  maxToRenderPerBatch={10}
+  onContentSizeChange={[Function]}
+  onEndReachedThreshold={2}
+  onLayout={[Function]}
+  onMomentumScrollEnd={[Function]}
+  onScroll={[Function]}
+  onScrollBeginDrag={[Function]}
+  onScrollEndDrag={[Function]}
+  removeClippedSubviews={false}
+  renderItem={[Function]}
+  scrollEventThrottle={50}
+  stickyHeaderIndices={Array []}
+  updateCellsBatchingPeriod={50}
+  viewabilityConfigCallbackPairs={Array []}
+  windowSize={21}
+>
+  <View>
+    <View
+      onLayout={[Function]}
+    />
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexGrow": 1,
+          "justifyContent": "center",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "rgb(28, 28, 30)",
+          }
+        }
+      >
+        Nothing found
+      </Text>
+    </View>
+  </View>
+</RCTScrollView>
+`;
+
+exports[`Search results list renders correctly with data 1`] = `
+<RCTScrollView
+  ListEmptyComponent={[Function]}
+  ListHeaderComponent={[Function]}
+  contentContainerStyle={
+    Object {
+      "flexGrow": 1,
+      "padding": 16,
+    }
+  }
+  data={
+    Array [
+      Object {
+        "adult": false,
+        "backdrop_path": "/ziTxBaF1AhbUwcv2IBiFJAf54qD.jpg",
+        "id": 65086,
+        "overview": "The story follows a young lawyer, Arthur Kipps.",
+        "popularity": 16.334,
+        "poster_path": "/aJbeDPUwDe9MLpseTFrNTBaQPzf.jpg",
+        "release_date": "2012-02-03",
+        "title": "The Woman in Black",
+        "vote_average": 6.11,
+      },
+      Object {
+        "adult": false,
+        "id": 102899,
+        "overview": "Armed with the astonishing ability to shrink in scale but increase in strength.",
+        "popularity": 69.704,
+        "poster_path": "/rS97hUJ1otKTTripGwQ0ujbuIri.jpg",
+        "release_date": "2015-07-14",
+        "title": "Ant-Man",
+        "vote_average": 7.088,
+      },
+    ]
+  }
+  disableVirtualization={false}
+  getItem={[Function]}
+  getItemCount={[Function]}
+  horizontal={false}
+  initialNumToRender={10}
+  keyExtractor={[Function]}
+  maxToRenderPerBatch={10}
+  onContentSizeChange={[Function]}
+  onEndReachedThreshold={2}
+  onLayout={[Function]}
+  onMomentumScrollEnd={[Function]}
+  onScroll={[Function]}
+  onScrollBeginDrag={[Function]}
+  onScrollEndDrag={[Function]}
+  removeClippedSubviews={false}
+  renderItem={[Function]}
+  scrollEventThrottle={50}
+  stickyHeaderIndices={Array []}
+  updateCellsBatchingPeriod={50}
+  viewabilityConfigCallbackPairs={Array []}
+  windowSize={21}
+>
+  <View>
+    <View
+      onLayout={[Function]}
+    />
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "flexDirection": "row",
+            "margin": 2,
+            "opacity": 1,
+          }
+        }
+      >
+        <Image
+          accessibilityIgnoresInvertColors={true}
+          resizeMode="cover"
+          source={
+            Object {
+              "uri": "undefined/aJbeDPUwDe9MLpseTFrNTBaQPzf.jpg",
+            }
+          }
+          style={
+            Object {
+              "height": 95,
+              "width": 160,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "column",
+              "flexWrap": "wrap",
+              "padding": 16,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "paddingBottom": 16,
+                "width": "100%",
+              }
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "fontSize": 16,
+                    "fontWeight": "400",
+                  },
+                  Object {
+                    "color": "rgb(28, 28, 30)",
+                  },
+                  Object {
+                    "flexWrap": "wrap",
+                  },
+                ]
+              }
+            >
+              The Woman in Black
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flexDirection": "row",
+                }
+              }
+            >
+              <Image
+                accessibilityIgnoresInvertColors={true}
+                resizeMode="cover"
+                source={
+                  Object {
+                    "testUri": "../../../src/assets/star.png",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 15,
+                    "marginRight": 5,
+                    "width": 15,
+                  }
+                }
+                testID="stars"
+              />
+              <Image
+                accessibilityIgnoresInvertColors={true}
+                resizeMode="cover"
+                source={
+                  Object {
+                    "testUri": "../../../src/assets/star.png",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 15,
+                    "marginRight": 5,
+                    "width": 15,
+                  }
+                }
+                testID="stars"
+              />
+              <Image
+                accessibilityIgnoresInvertColors={true}
+                resizeMode="cover"
+                source={
+                  Object {
+                    "testUri": "../../../src/assets/star.png",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 15,
+                    "marginRight": 5,
+                    "width": 15,
+                  }
+                }
+                testID="stars"
+              />
+            </View>
+            <Image
+              accessibilityIgnoresInvertColors={true}
+              resizeMode="contain"
+              source={
+                Object {
+                  "testUri": "../../../src/assets/play.png",
+                }
+              }
+              style={
+                Object {
+                  "height": 20,
+                  "width": 20,
+                }
+              }
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "backgroundColor": "rgb(255, 255, 255)",
+            "flexDirection": "row",
+            "margin": 2,
+            "opacity": 1,
+          }
+        }
+      >
+        <Image
+          accessibilityIgnoresInvertColors={true}
+          resizeMode="cover"
+          source={
+            Object {
+              "uri": "undefined/rS97hUJ1otKTTripGwQ0ujbuIri.jpg",
+            }
+          }
+          style={
+            Object {
+              "height": 95,
+              "width": 160,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "column",
+              "flexWrap": "wrap",
+              "padding": 16,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "paddingBottom": 16,
+                "width": "100%",
+              }
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "fontSize": 16,
+                    "fontWeight": "400",
+                  },
+                  Object {
+                    "color": "rgb(28, 28, 30)",
+                  },
+                  Object {
+                    "flexWrap": "wrap",
+                  },
+                ]
+              }
+            >
+              Ant-Man
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flexDirection": "row",
+                }
+              }
+            >
+              <Image
+                accessibilityIgnoresInvertColors={true}
+                resizeMode="cover"
+                source={
+                  Object {
+                    "testUri": "../../../src/assets/star.png",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 15,
+                    "marginRight": 5,
+                    "width": 15,
+                  }
+                }
+                testID="stars"
+              />
+              <Image
+                accessibilityIgnoresInvertColors={true}
+                resizeMode="cover"
+                source={
+                  Object {
+                    "testUri": "../../../src/assets/star.png",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 15,
+                    "marginRight": 5,
+                    "width": 15,
+                  }
+                }
+                testID="stars"
+              />
+              <Image
+                accessibilityIgnoresInvertColors={true}
+                resizeMode="cover"
+                source={
+                  Object {
+                    "testUri": "../../../src/assets/star.png",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 15,
+                    "marginRight": 5,
+                    "width": 15,
+                  }
+                }
+                testID="stars"
+              />
+              <Image
+                accessibilityIgnoresInvertColors={true}
+                resizeMode="cover"
+                source={
+                  Object {
+                    "testUri": "../../../src/assets/halfStar.png",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 15,
+                    "marginRight": 5,
+                    "width": 15,
+                  }
+                }
+                testID="stars"
+              />
+            </View>
+            <Image
+              accessibilityIgnoresInvertColors={true}
+              resizeMode="contain"
+              source={
+                Object {
+                  "testUri": "../../../src/assets/play.png",
+                }
+              }
+              style={
+                Object {
+                  "height": 20,
+                  "width": 20,
+                }
+              }
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</RCTScrollView>
+`;
+
+exports[`Star scores component renders correctly passing a prop 1`] = `
+<View
+  style={
+    Object {
+      "flexDirection": "row",
+    }
+  }
+>
+  <Image
+    accessibilityIgnoresInvertColors={true}
+    resizeMode="cover"
+    source={
+      Object {
+        "testUri": "../../../src/assets/star.png",
+      }
+    }
+    style={
+      Object {
+        "height": 15,
+        "marginRight": 5,
+        "width": 15,
+      }
+    }
+    testID="stars"
+  />
+  <Image
+    accessibilityIgnoresInvertColors={true}
+    resizeMode="cover"
+    source={
+      Object {
+        "testUri": "../../../src/assets/star.png",
+      }
+    }
+    style={
+      Object {
+        "height": 15,
+        "marginRight": 5,
+        "width": 15,
+      }
+    }
+    testID="stars"
+  />
+  <Image
+    accessibilityIgnoresInvertColors={true}
+    resizeMode="cover"
+    source={
+      Object {
+        "testUri": "../../../src/assets/star.png",
+      }
+    }
+    style={
+      Object {
+        "height": 15,
+        "marginRight": 5,
+        "width": 15,
+      }
+    }
+    testID="stars"
+  />
+  <Image
+    accessibilityIgnoresInvertColors={true}
+    resizeMode="cover"
+    source={
+      Object {
+        "testUri": "../../../src/assets/star.png",
+      }
+    }
+    style={
+      Object {
+        "height": 15,
+        "marginRight": 5,
+        "width": 15,
+      }
+    }
+    testID="stars"
+  />
+  <Image
+    accessibilityIgnoresInvertColors={true}
+    resizeMode="cover"
+    source={
+      Object {
+        "testUri": "../../../src/assets/halfStar.png",
+      }
+    }
+    style={
+      Object {
+        "height": 15,
+        "marginRight": 5,
+        "width": 15,
+      }
+    }
+    testID="stars"
+  />
+</View>
+`;
+
+exports[`Star scores component renders correctly with no prop passed 1`] = `
+<View
+  style={
+    Object {
+      "flexDirection": "row",
+    }
+  }
+/>
+`;

@@ -20,6 +20,7 @@ export const StarScores = ({ voteAverage = 0 }) => {
 
   const starImage = (idx, icon) => (
     <Image
+      testID="stars"
       key={idx}
       source={icon}
       accessibilityIgnoresInvertColors

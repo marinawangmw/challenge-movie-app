@@ -10,7 +10,7 @@ import { MovieItem } from '@/components';
 const emptyRoute = { params: { collection: [{ movieList: [], title: 'test empty' }] } };
 const routeWithData = {
   params: {
-    collection: [],
+    collection: movieList,
   },
 };
 

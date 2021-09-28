@@ -6,14 +6,7 @@ const initialStore = {
   error: {},
   status: {},
   user: {},
-  movieList: {
-    errorMessage: undefined,
-    myList: [],
-    heroPoster: {},
-    movieLists: [],
-    similarMovies: [],
-    searchResults: [],
-  },
+  movieList: {},
 };
 
 export function configureStore(initialState = initialStore) {

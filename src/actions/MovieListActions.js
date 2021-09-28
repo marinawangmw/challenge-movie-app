@@ -9,7 +9,7 @@ import { strings } from '@/localization';
 
 export const TYPES = {
   ADD_TO_MY_LIST: 'ADD_TO_MY_LIST',
-  REMOVE_FROM_MT_LIST: 'REMOVE_FROM_MT_LIST',
+  REMOVE_FROM_MY_LIST: 'REMOVE_FROM_MY_LIST',
 
   FETCH_MOVIE_LISTS: 'FETCH_MOVIE_LISTS',
   FETCH_MOVIE_LISTS_REQUEST: 'FETCH_MOVIE_LISTS_REQUEST',
@@ -92,9 +92,9 @@ export const addToMyList = (movie) => ({
   payload: movie,
 });
 
-export const removeFromMyList = (movie) => ({
-  type: TYPES.REMOVE_FROM_MT_LIST,
-  payload: movie,
+export const removeFromMyList = (movieId) => ({
+  type: TYPES.REMOVE_FROM_MY_LIST,
+  payload: movieId,
 });
 
 export const fetchSimilarMoviesRequest = () => ({

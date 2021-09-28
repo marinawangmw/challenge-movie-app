@@ -1,7 +1,28 @@
 import React from 'react';
 import { render } from '@testing-library/react-native';
+import { shallow } from 'enzyme';
+import toJson from 'enzyme-to-json';
 import { MovieDetail } from '@/screens';
+import { Controls, MessageBanner } from '@/components';
 import { withProviders } from '@/test-utils';
+import { movieList, navigation } from '@/test-utils/helper';
+
+const fakeEmptyStore = {
+  error: {},
+  status: {},
+  user: {},
+  movieList: {
+    errorMessage: undefined,
+    myList: [],
+    heroPoster: {},
+    movieLists: [],
+    similarMovies: {
+      page: 1,
+      results: [],
+    },
+    searchResults: [],
+  },
+};
 
 const fakeStoreWithData = {
   error: {},
@@ -14,36 +35,11 @@ const fakeStoreWithData = {
     movieLists: [],
     similarMovies: {
       page: 1,
-      results: [
-        {
-          adult: false,
-          backdrop_path: '/ziTxBaF1AhbUwcv2IBiFJAf54qD.jpg',
-          id: 65086,
-          overview: 'The story follows a young lawyer, Arthur Kipps.',
-          popularity: 16.334,
-          poster_path: '/aJbeDPUwDe9MLpseTFrNTBaQPzf.jpg',
-          release_date: '2012-02-03',
-          title: 'The Woman in Black',
-          vote_average: 6.11,
-        },
-        {
-          adult: false,
-          id: 102899,
-          overview:
-            'Armed with the astonishing ability to shrink in scale but increase in strength.',
-          popularity: 69.704,
-          poster_path: '/rS97hUJ1otKTTripGwQ0ujbuIri.jpg',
-          release_date: '2015-07-14',
-          title: 'Ant-Man',
-          vote_average: 7.088,
-        },
-      ],
+      results: [movieList],
     },
     searchResults: [],
   },
 };
-
-const navigation = { navigate: jest.fn(), getParam: jest.fn(), setOptions: jest.fn() };
 
 const emptyRoute = {
   params: {
@@ -61,22 +57,16 @@ const emptyRoute = {
 
 const routeWithData = {
   params: {
-    movieDetails: {
-      id: 592350,
-      poster_path: '/zGVbrulkupqpbwgiNedkJPyQum4.jpg',
-      title: 'test',
-      vote_average: 8.5,
-      adult: false,
-      release_date: '2019-12-20',
-      overview: 'Class 1-A visits Nabu Island where they finally get to do some real hero work. ',
-    },
+    movieDetails: movieList.movieList[0],
   },
 };
 
 describe('Movie Collection', () => {
   it('renders correcly with empty details and similar movies', () => {
     const { toJSON } = render(
-      withProviders(<MovieDetail route={emptyRoute} navigation={navigation} />)
+      withProviders(<MovieDetail route={emptyRoute} navigation={navigation} />, {
+        initialState: fakeEmptyStore,
+      })
     );
     expect(toJSON()).toMatchSnapshot();
   });
@@ -88,5 +78,47 @@ describe('Movie Collection', () => {
       })
     );
     expect(toJSON()).toMatchSnapshot();
+  });
+});
+
+describe('Controls component', () => {
+  it('renders correctly and match snapshot', () => {
+    const controlDatas = [{ icon: null, label: 'Play', handleControlPress: () => null }];
+    const { toJSON } = render(
+      withProviders(
+        <Controls controlDatas={controlDatas} route={routeWithData} navigation={navigation} />,
+        {
+          initialState: fakeStoreWithData,
+        }
+      )
+    );
+    expect(toJSON()).toMatchSnapshot();
+  });
+
+  it('renders all items in control datas', () => {
+    const controlDatas = [
+      { icon: null, label: 'Play', handleControlPress: () => null },
+      { icon: null, label: 'Info', handleControlPress: () => null },
+    ];
+    const wrapper = shallow(
+      <Controls controlDatas={controlDatas} route={routeWithData} navigation={navigation} />
+    );
+    expect(wrapper.find({ testID: 'controlItem' }).length).toBe(2);
+  });
+});
+
+describe('Message Banner component', () => {
+  it('renders correctly', () => {
+    const component = shallow(<MessageBanner />);
+
+    expect(component.length).toBe(1);
+    expect(toJson(component)).toMatchSnapshot();
+  });
+
+  it('renders correctly with message', () => {
+    const message = 'Welcome!';
+    const { queryByText } = render(<MessageBanner message={message} />);
+
+    expect(queryByText('Welcome!')).not.toBeNull();
   });
 });

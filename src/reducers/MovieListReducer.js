@@ -19,8 +19,8 @@ const addMovieToMyList = (myList, movieToAdd) => {
   return myList;
 };
 
-const subtractMovieFromMyList = (myList, movieToSubtract) => {
-  return myList.filter((movie) => movie.id !== movieToSubtract.id);
+const subtractMovieFromMyList = (myList, movieIdToSubtract) => {
+  return myList.filter((movie) => movie.id !== movieIdToSubtract);
 };
 
 export const movieListReducer = (state = INITIAL_STATE, { payload, type }) => {
@@ -45,7 +45,7 @@ export const movieListReducer = (state = INITIAL_STATE, { payload, type }) => {
     case TYPES.ADD_TO_MY_LIST:
       return { ...state, myList: addMovieToMyList(state.myList, payload) };
 
-    case TYPES.REMOVE_FROM_MT_LIST:
+    case TYPES.REMOVE_FROM_MY_LIST:
       return {
         ...state,
         myList: subtractMovieFromMyList(state.myList, payload),

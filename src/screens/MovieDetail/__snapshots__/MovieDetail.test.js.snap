@@ -1,5 +1,88 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Controls component renders correctly and match snapshot 1`] = `
+<View
+  style={
+    Array [
+      undefined,
+      Object {
+        "color": "rgb(28, 28, 30)",
+      },
+    ]
+  }
+>
+  <View
+    testID="controlItem"
+  >
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+    >
+      <Image
+        accessibilityIgnoresInvertColors={true}
+        resizeMode="cover"
+        source={null}
+        style={
+          Array [
+            Object {
+              "height": 28,
+              "margin": 8,
+              "width": 28,
+            },
+            Object {
+              "height": 34,
+              "marginBottom": 2,
+              "marginTop": 8,
+            },
+          ]
+        }
+      />
+    </View>
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "rgb(28, 28, 30)",
+          },
+          Object {
+            "fontSize": 16,
+            "fontWeight": "700",
+          },
+        ]
+      }
+    >
+      Play
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`Message Banner component renders correctly 1`] = `
+<View>
+  <Text
+    style={
+      Object {
+        "color": "rgb(28, 28, 30)",
+      }
+    }
+  >
+    There's no movie added to My List yet
+  </Text>
+</View>
+`;
+
 exports[`Movie Collection renders correcly with data on details and similar movies 1`] = `
 <View
   style={
@@ -24,6 +107,11 @@ exports[`Movie Collection renders correcly with data on details and similar movi
     hidesWhenStopped={true}
     size="large"
   />
+  <Text
+    testID="name"
+  >
+    Hello, undefined!
+  </Text>
 </View>
 `;
 

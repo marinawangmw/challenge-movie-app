@@ -129,3 +129,78 @@ exports[`Movie Collection renders correcly with route with data of movie list 1`
   </RCTScrollView>
 </View>
 `;
+
+exports[`Movie item component renders correctly and match snapshot 1`] = `
+<View
+  accessible={true}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "opacity": 1,
+    }
+  }
+>
+  <View
+    accessibilityIgnoresInvertColors={true}
+    style={
+      Object {
+        "height": 150,
+        "margin": 1,
+        "width": 90,
+      }
+    }
+  >
+    <Image
+      resizeMode="cover"
+      source={
+        Object {
+          "uri": "undefined/aJbeDPUwDe9MLpseTFrNTBaQPzf.jpg",
+        }
+      }
+      style={
+        Array [
+          Object {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          },
+          Object {
+            "height": 150,
+            "width": 90,
+          },
+          undefined,
+        ]
+      }
+    />
+    <View
+      style={
+        Object {
+          "backgroundColor": undefined,
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            undefined,
+            Object {
+              "color": "rgb(28, 28, 30)",
+            },
+          ]
+        }
+      >
+        Movy Original
+      </Text>
+    </View>
+  </View>
+</View>
+`;

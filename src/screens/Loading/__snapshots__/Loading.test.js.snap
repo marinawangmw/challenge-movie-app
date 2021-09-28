@@ -24,5 +24,10 @@ exports[`Loading renders correcly should match the snapshot 1`] = `
     hidesWhenStopped={true}
     size="large"
   />
+  <Text
+    testID="name"
+  >
+    Hello, undefined!
+  </Text>
 </View>
 `;

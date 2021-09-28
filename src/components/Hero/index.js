@@ -14,8 +14,8 @@ import { addToMyList } from '@/actions/MovieListActions';
 import { NAVIGATION } from '@/constants';
 
 export const Hero = ({ navigation }) => {
-  const heroPoster = useSelector(getHeroPoster);
   const { colors } = useTheme();
+  const heroPoster = useSelector(getHeroPoster);
   const dispatch = useDispatch();
 
   const handleMyListIconPress = () => {

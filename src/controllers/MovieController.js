@@ -37,3 +37,7 @@ export function getSearchesResult(query) {
     },
   });
 }
+
+export function getMovieTrailer(id) {
+  return HttpClient.get(`/movie/${id}/videos`);
+}

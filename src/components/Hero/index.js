@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ImageBackground, StyleSheet } from 'react-native';
+import { View, ImageBackground, StyleSheet, Linking, Alert } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTheme } from '@react-navigation/native';
 import { Config } from 'react-native-config';
@@ -12,6 +12,7 @@ import { addIcon, playIcon, infoIcon } from '@/assets';
 import { strings } from '@/localization';
 import { addToMyList } from '@/actions/MovieListActions';
 import { NAVIGATION } from '@/constants';
+import { getMovieTrailer } from '@/controllers/MovieController';
 
 export const Hero = ({ navigation }) => {
   const heroPoster = useSelector(getHeroPoster);
@@ -28,9 +29,29 @@ export const Hero = ({ navigation }) => {
     });
   };
 
+  const handlePlayTrailer = async () => {
+    try {
+      const trailerData = await getMovieTrailer(heroPoster.posterMovie.id);
+
+      if (trailerData.results.length) {
+        const url = Config.VIDEO_EXTERNAL_BASE_URL + trailerData.results[0].key;
+
+        const supported = await Linking.canOpenURL(url);
+
+        if (supported) {
+          await Linking.openURL(url);
+        } else {
+          Alert.alert(`Don't know how to open this URL: ${url}`);
+        }
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   const controlDatas = [
     { icon: addIcon, label: strings.controls.myList, handleControlPress: handleMyListIconPress },
-    { icon: playIcon, label: strings.controls.play },
+    { icon: playIcon, label: strings.controls.play, handleControlPress: handlePlayTrailer },
     { icon: infoIcon, label: strings.controls.info, handleControlPress: handleInfoIconPress },
   ];
 

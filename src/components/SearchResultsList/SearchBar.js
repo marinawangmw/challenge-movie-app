@@ -12,6 +12,7 @@ export const SearchBar = ({ input, setInput }) => {
     <View style={[styles.searchBar, { backgroundColor: colors.card }]}>
       <Image source={searchIcon} style={styles.icon} accessibilityIgnoresInvertColors />
       <TextInput
+        testID="searchInput"
         autoFocus
         placeholder={en.search.inputPlaceholder}
         placeholderTextColor={colors.text}

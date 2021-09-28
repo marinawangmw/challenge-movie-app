@@ -9,7 +9,7 @@ export const Controls = ({ controlDatas, controlStyles }) => {
   const styles = { ...defaultStyles, ...controlStyles };
 
   const renderControls = (control, idx) => (
-    <View style={styles.controlWrapper} key={idx}>
+    <View style={styles.controlWrapper} key={idx} testID="controlItem">
       <TouchableOpacity onPress={control.handleControlPress}>
         <Image
           source={control.icon}

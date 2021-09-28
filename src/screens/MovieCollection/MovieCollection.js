@@ -29,7 +29,12 @@ export const MovieCollection = ({ navigation, route, noObjectMessage }) => {
       <FlatList
         data={collection}
         renderItem={(item) => (
-          <MovieItem item={item} customStyles={movieItemStyles} navigation={navigation} />
+          <MovieItem
+            testID="movieItem"
+            item={item}
+            customStyles={movieItemStyles}
+            navigation={navigation}
+          />
         )}
         numColumns={NumColumns}
         contentContainerStyle={styles.flatlist}

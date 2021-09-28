@@ -1,0 +1,406 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Movie List renders correcly with empty movie list 1`] = `
+<View
+  style={
+    Object {
+      "margin": 24,
+    }
+  }
+>
+  <View
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "paddingVertical": 16,
+          },
+          Object {
+            "color": "rgb(28, 28, 30)",
+          },
+          Object {
+            "fontSize": 18,
+            "fontWeight": "700",
+          },
+        ]
+      }
+    >
+      test
+    </Text>
+  </View>
+  <RCTScrollView
+    ListEmptyComponent={[Function]}
+    contentContainerStyle={
+      Object {
+        "flexGrow": 1,
+      }
+    }
+    data={Array []}
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={true}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    removeClippedSubviews={false}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={Array []}
+    updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
+    windowSize={21}
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "rgb(255, 255, 255)",
+            "borderRadius": 4,
+            "flexGrow": 1,
+            "height": 120,
+            "justifyContent": "center",
+            "marginVertical": 8,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "rgb(28, 28, 30)",
+            }
+          }
+        >
+          Nothing here yet
+        </Text>
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;
+
+exports[`Movie List renders correcly with movie list with data 1`] = `
+<View
+  style={
+    Object {
+      "margin": 24,
+    }
+  }
+>
+  <View
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "paddingVertical": 16,
+          },
+          Object {
+            "color": "rgb(28, 28, 30)",
+          },
+          Object {
+            "fontSize": 18,
+            "fontWeight": "700",
+          },
+        ]
+      }
+    >
+      test
+    </Text>
+  </View>
+  <RCTScrollView
+    ListEmptyComponent={[Function]}
+    contentContainerStyle={
+      Object {
+        "flexGrow": 1,
+      }
+    }
+    data={
+      Array [
+        Object {
+          "adult": false,
+          "backdrop_path": "/ziTxBaF1AhbUwcv2IBiFJAf54qD.jpg",
+          "id": 65086,
+          "overview": "The story follows a young lawyer, Arthur Kipps.",
+          "popularity": 16.334,
+          "poster_path": "/aJbeDPUwDe9MLpseTFrNTBaQPzf.jpg",
+          "release_date": "2012-02-03",
+          "title": "The Woman in Black",
+          "vote_average": 6.11,
+        },
+        Object {
+          "adult": false,
+          "id": 102899,
+          "overview": "Armed with the astonishing ability to shrink in scale but increase in strength.",
+          "popularity": 69.704,
+          "poster_path": "/rS97hUJ1otKTTripGwQ0ujbuIri.jpg",
+          "release_date": "2015-07-14",
+          "title": "Ant-Man",
+          "vote_average": 7.088,
+        },
+      ]
+    }
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={true}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    removeClippedSubviews={false}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={Array []}
+    updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
+    windowSize={21}
+  >
+    <View>
+      <View
+        onLayout={[Function]}
+        style={
+          Array [
+            Object {
+              "flexDirection": "row",
+            },
+            null,
+          ]
+        }
+      >
+        <View
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "height": 150,
+              "justifyContent": "center",
+              "margin": 1,
+              "opacity": 1,
+              "width": 90,
+            }
+          }
+        >
+          <View
+            accessibilityIgnoresInvertColors={true}
+            style={
+              Object {
+                "height": 150,
+                "margin": 1,
+                "width": 90,
+              }
+            }
+          >
+            <Image
+              resizeMode="cover"
+              source={
+                Object {
+                  "uri": "undefined/aJbeDPUwDe9MLpseTFrNTBaQPzf.jpg",
+                }
+              }
+              style={
+                Array [
+                  Object {
+                    "bottom": 0,
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  },
+                  Object {
+                    "height": 150,
+                    "width": 90,
+                  },
+                  undefined,
+                ]
+              }
+            />
+            <View
+              style={
+                Object {
+                  "alignSelf": "center",
+                  "backgroundColor": undefined,
+                  "borderRadius": 1.25,
+                  "bottom": 24,
+                  "paddingHorizontal": 8,
+                  "paddingVertical": 1,
+                  "position": "absolute",
+                  "zIndex": 2,
+                }
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "fontSize": 4.67,
+                      "fontWeight": "bold",
+                      "lineHeight": 5.47,
+                    },
+                    Object {
+                      "color": "rgb(28, 28, 30)",
+                    },
+                  ]
+                }
+              >
+                Movy Original
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={
+          Array [
+            Object {
+              "flexDirection": "row",
+            },
+            null,
+          ]
+        }
+      >
+        <View
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "height": 150,
+              "justifyContent": "center",
+              "margin": 1,
+              "opacity": 1,
+              "width": 90,
+            }
+          }
+        >
+          <View
+            accessibilityIgnoresInvertColors={true}
+            style={
+              Object {
+                "height": 150,
+                "margin": 1,
+                "width": 90,
+              }
+            }
+          >
+            <Image
+              resizeMode="cover"
+              source={
+                Object {
+                  "uri": "undefined/rS97hUJ1otKTTripGwQ0ujbuIri.jpg",
+                }
+              }
+              style={
+                Array [
+                  Object {
+                    "bottom": 0,
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  },
+                  Object {
+                    "height": 150,
+                    "width": 90,
+                  },
+                  undefined,
+                ]
+              }
+            />
+            <View
+              style={
+                Object {
+                  "alignSelf": "center",
+                  "backgroundColor": undefined,
+                  "borderRadius": 1.25,
+                  "bottom": 24,
+                  "paddingHorizontal": 8,
+                  "paddingVertical": 1,
+                  "position": "absolute",
+                  "zIndex": 2,
+                }
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "fontSize": 4.67,
+                      "fontWeight": "bold",
+                      "lineHeight": 5.47,
+                    },
+                    Object {
+                      "color": "rgb(28, 28, 30)",
+                    },
+                  ]
+                }
+              >
+                Movy Original
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;

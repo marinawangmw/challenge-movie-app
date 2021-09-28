@@ -1,9 +1,11 @@
 import React from 'react';
-import { View, ImageBackground, StyleSheet, Linking, Alert } from 'react-native';
+import { View, ImageBackground, StyleSheet } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTheme } from '@react-navigation/native';
 import { Config } from 'react-native-config';
 import LinearGradient from 'react-native-linear-gradient';
+import Toast from 'react-native-toast-message';
+import { playTrailer } from '../helper';
 import Labels from './Labels';
 import { Header, SpecialBanner, Controls } from '@/components';
 import { spacing, typography } from '@/theme';
@@ -12,7 +14,6 @@ import { addIcon, playIcon, infoIcon } from '@/assets';
 import { strings } from '@/localization';
 import { addToMyList } from '@/actions/MovieListActions';
 import { NAVIGATION } from '@/constants';
-import { getMovieTrailer } from '@/controllers/MovieController';
 
 export const Hero = ({ navigation }) => {
   const heroPoster = useSelector(getHeroPoster);
@@ -21,6 +22,11 @@ export const Hero = ({ navigation }) => {
 
   const handleMyListIconPress = () => {
     dispatch(addToMyList(heroPoster.posterMovie));
+    Toast.show({
+      type: 'success',
+      text1: `Hooray!`,
+      text2: `Successfully added to my list!`,
+    });
   };
 
   const handleInfoIconPress = () => {
@@ -29,24 +35,8 @@ export const Hero = ({ navigation }) => {
     });
   };
 
-  const handlePlayTrailer = async () => {
-    try {
-      const trailerData = await getMovieTrailer(heroPoster.posterMovie.id);
-
-      if (trailerData.results.length) {
-        const url = Config.VIDEO_EXTERNAL_BASE_URL + trailerData.results[0].key;
-
-        const supported = await Linking.canOpenURL(url);
-
-        if (supported) {
-          await Linking.openURL(url);
-        } else {
-          Alert.alert(`Don't know how to open this URL: ${url}`);
-        }
-      }
-    } catch (e) {
-      console.log(e);
-    }
+  const handlePlayTrailer = () => {
+    playTrailer(heroPoster.posterMovie.id);
   };
 
   const controlDatas = [

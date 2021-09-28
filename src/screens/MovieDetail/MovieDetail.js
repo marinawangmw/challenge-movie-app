@@ -1,19 +1,26 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { View, Image, Text, FlatList } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTheme } from '@react-navigation/native';
 import { Config } from 'react-native-config';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
+import Toast from 'react-native-toast-message';
 import { styles, controlStyles, movieItemStyles } from './MovieDetail.styles';
 import { Loading } from '@/screens';
 import { Controls, MovieItem, MessageBanner } from '@/components';
-import { logo, addIcon } from '@/assets';
+import { logo, addIcon, minusIcon } from '@/assets';
 import { typography } from '@/theme';
 import { en } from '@/localization/en';
 import { strings } from '@/localization';
-import { addToMyList, fetchSimilarMoviesStartAsync, TYPES } from '@/actions/MovieListActions';
+import {
+  addToMyList,
+  fetchSimilarMoviesStartAsync,
+  removeFromMyList,
+  TYPES,
+} from '@/actions/MovieListActions';
 import { isLoadingSelector } from '@/selectors/StatusSelectors';
-import { getSimilarMovies } from '@/selectors/MovieListSelectors';
+import { getMyList, getSimilarMovies } from '@/selectors/MovieListSelectors';
+import { playTrailer } from '@/components/helper';
 
 export const MovieDetail = ({ navigation, route }) => {
   const { movieDetails } = route.params;
@@ -21,19 +28,56 @@ export const MovieDetail = ({ navigation, route }) => {
   const dispatch = useDispatch();
   const isLoading = useSelector((state) => isLoadingSelector([TYPES.FETCH_SIMILAR_MOVIES], state));
   const similarMovies = useSelector(getSimilarMovies);
+  const myList = useSelector(getMyList);
+
+  const [controlDatas, setControlDatas] = useState([]);
 
   useEffect(() => {
     dispatch(fetchSimilarMoviesStartAsync(movieDetails.id));
   }, [dispatch, movieDetails.id]);
 
-  const handleControlPress = () => {
+  const handleAddToMyList = useCallback(() => {
     dispatch(addToMyList(movieDetails));
-  };
+    Toast.show({
+      type: 'success',
+      text1: 'Hooray!',
+      text2: 'Successfully added to my list!',
+    });
+  }, [dispatch, movieDetails]);
 
-  const controlDatas = [{ icon: addIcon, label: strings.controls.myList, handleControlPress }];
+  const handleRemoveFromMyList = useCallback(() => {
+    dispatch(removeFromMyList(movieDetails.id));
+    Toast.show({
+      type: 'success',
+      text1: 'Hooray!',
+      text2: 'Successfully deleted from my list!',
+    });
+  }, [dispatch, movieDetails.id]);
+
+  useEffect(() => {
+    const existsInMyList = myList.filter((movie) => movie.id === movieDetails.id);
+
+    if (existsInMyList.length) {
+      setControlDatas([
+        {
+          icon: minusIcon,
+          label: strings.controls.myList,
+          handleControlPress: handleRemoveFromMyList,
+        },
+      ]);
+    } else {
+      setControlDatas([
+        { icon: addIcon, label: strings.controls.myList, handleControlPress: handleAddToMyList },
+      ]);
+    }
+  }, [handleAddToMyList, handleRemoveFromMyList, movieDetails.id, myList]);
 
   const renderEmptyMessage = () => {
     <MessageBanner message={en.movieDetails.noObjectMessage} />;
+  };
+
+  const handlePlayTrailer = () => {
+    playTrailer(movieDetails.id);
   };
 
   if (isLoading) {
@@ -66,7 +110,10 @@ export const MovieDetail = ({ navigation, route }) => {
               </View>
             )}
           </View>
-          <TouchableOpacity style={[{ backgroundColor: colors.text }, styles.watchButton]}>
+          <TouchableOpacity
+            onPress={handlePlayTrailer}
+            style={[{ backgroundColor: colors.text }, styles.watchButton]}
+          >
             <Text style={styles.watchButtonLabel}>{en.movieDetails.watchTrailer}</Text>
           </TouchableOpacity>
 
@@ -77,7 +124,7 @@ export const MovieDetail = ({ navigation, route }) => {
           <Controls
             controlDatas={controlDatas}
             controlStyles={controlStyles}
-            handleControlPress={handleControlPress}
+            handleControlPress={handleAddToMyList}
           />
 
           <View>

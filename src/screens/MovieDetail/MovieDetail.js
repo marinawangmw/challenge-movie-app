@@ -40,8 +40,8 @@ export const MovieDetail = ({ navigation, route }) => {
     dispatch(addToMyList(movieDetails));
     Toast.show({
       type: 'success',
-      text1: 'Hooray!',
-      text2: 'Successfully added to my list!',
+      text1: en.toast.successTitle,
+      text2: en.toast.addedToMyList,
     });
   }, [dispatch, movieDetails]);
 
@@ -49,8 +49,8 @@ export const MovieDetail = ({ navigation, route }) => {
     dispatch(removeFromMyList(movieDetails.id));
     Toast.show({
       type: 'success',
-      text1: 'Hooray!',
-      text2: 'Successfully deleted from my list!',
+      text1: en.toast.successTitle,
+      text2: en.toast.deletedFromMyList,
     });
   }, [dispatch, movieDetails.id]);
 

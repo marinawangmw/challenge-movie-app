@@ -9,6 +9,7 @@ import { getMovieLists } from '@/selectors/MovieListSelectors';
 import { isLoadingSelector } from '@/selectors/StatusSelectors';
 import { getLastFetch } from '@/selectors/ReduxStatusSelectors';
 import { clearStore } from '@/actions/ReduxStatusActions';
+import { en } from '@/localization/en';
 
 const dateToDayUnit = 1000 * 60 * 60 * 24;
 
@@ -35,8 +36,8 @@ export function Home({ navigation }) {
         dispatch(clearStore());
         Toast.show({
           type: 'success',
-          text1: 'Hooray!',
-          text2: 'Cleared oudated data',
+          text1: en.toast.successTitle,
+          text2: en.toast.clearedOudatedData,
         });
       }
     }

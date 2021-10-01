@@ -2,6 +2,7 @@ import { Linking } from 'react-native';
 import { Config } from 'react-native-config';
 import Toast from 'react-native-toast-message';
 import { getMovieTrailer } from '@/controllers/MovieController';
+import { en } from '@/localization/en';
 
 export const playTrailer = async (id) => {
   try {
@@ -17,15 +18,15 @@ export const playTrailer = async (id) => {
       } else {
         Toast.show({
           type: 'error',
-          text1: "Something's wrong",
-          text2: `Don't know how to open this URL: ${url}`,
+          text1: en.toast.somethingWrong,
+          text2: en.toast.unableToOpen + url,
         });
       }
     } else {
       Toast.show({
         type: 'error',
-        text1: 'Oops',
-        text2: "There's no trailer found for this movie",
+        text1: en.toast.errorTitle,
+        text2: en.toast.noTrailerFound,
       });
     }
   } catch (e) {

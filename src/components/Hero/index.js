@@ -14,6 +14,7 @@ import { addIcon, playIcon, infoIcon } from '@/assets';
 import { strings } from '@/localization';
 import { addToMyList } from '@/actions/MovieListActions';
 import { NAVIGATION } from '@/constants';
+import { en } from '@/localization/en';
 
 export const Hero = ({ navigation }) => {
   const { colors } = useTheme();
@@ -24,8 +25,8 @@ export const Hero = ({ navigation }) => {
     dispatch(addToMyList(heroPoster.posterMovie));
     Toast.show({
       type: 'success',
-      text1: `Hooray!`,
-      text2: `Successfully added to my list!`,
+      text1: en.toast.successTitle,
+      text2: en.toast.addedToMyList,
     });
   };
 

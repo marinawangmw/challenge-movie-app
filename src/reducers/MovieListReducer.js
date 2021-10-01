@@ -25,9 +25,6 @@ const subtractMovieFromMyList = (myList, movieIdToSubtract) => {
 };
 
 export const movieListReducer = (state = INITIAL_STATE, { payload, type }) => {
-  if (type === REDUX_STATUS_TYPES.CLEAR_STORE) {
-    console.log('redux status reducer: ', state, payload, type);
-  }
   switch (type) {
     case TYPES.FETCH_MOVIE_LISTS_REQUEST:
       return {

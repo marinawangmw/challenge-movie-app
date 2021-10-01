@@ -46,4 +46,14 @@ export const en = {
     popularSearches: 'Popular Searches',
     noObjectMessage: 'Nothing found',
   },
+  toast: {
+    successTitle: 'Hooray!',
+    errorTitle: 'Oops',
+    somethingWrong: "Something's wrong",
+    unableToOpen: "Don't know how to open this URL: ",
+    noTrailerFound: "There's no trailer found for this movie",
+    clearedOudatedData: 'Cleared oudated data',
+    addedToMyList: 'Successfully added to my list!',
+    deletedFromMyList: 'Successfully deleted from my list!',
+  },
 };

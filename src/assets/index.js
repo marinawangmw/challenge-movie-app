@@ -7,6 +7,7 @@ export { default as logo } from '@/assets/logo/logo.png';
 export { default as infoIcon } from '@/assets/info.png';
 export { default as playIcon } from '@/assets/play.png';
 export { default as addIcon } from '@/assets/plus.png';
+export { default as minusIcon } from '@/assets/minus.png';
 export { default as movie } from '@/assets/movie.png';
 export { default as audioIcon } from '@/assets/mic.png';
 export { default as starIcon } from '@/assets/star.png';

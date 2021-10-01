@@ -27,7 +27,7 @@ export const MovieCollection = ({ navigation, route, noObjectMessage }) => {
   return (
     <View style={styles.container}>
       <FlatList
-        data={collection.movieList}
+        data={collection}
         renderItem={(item) => (
           <MovieItem
             testID="movieItem"

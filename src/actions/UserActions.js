@@ -1,7 +1,7 @@
+import { clearStore } from './ReduxStatusActions';
 import { UserController } from '@/controllers';
 
 export const TYPES = {
-  CLEAR_STORE: 'CLEAR_STORE',
   LOGIN: 'LOGIN',
   LOGIN_REQUEST: 'LOGIN_REQUEST',
   LOGIN_ERROR: 'LOGIN_ERROR',
@@ -21,11 +21,6 @@ const loginSuccess = (user) => ({
 const loginError = (error) => ({
   type: TYPES.LOGIN_ERROR,
   payload: { error },
-});
-
-const clearStore = () => ({
-  type: TYPES.CLEAR_STORE,
-  payload: null,
 });
 
 export const login = (username, password) => async (dispatch) => {

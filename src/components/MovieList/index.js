@@ -11,7 +11,7 @@ export const MovieList = ({ navigation, item }) => {
 
   const handlePress = () => {
     navigation.navigate(NAVIGATION.movieCollection, {
-      collection: item,
+      collection: item.movieList,
       noObjectMessage: en.movieLists.noObjectMessage,
     });
   };

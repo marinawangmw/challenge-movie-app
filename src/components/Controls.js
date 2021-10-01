@@ -13,7 +13,11 @@ export const Controls = ({ controlDatas, controlStyles }) => {
       <TouchableOpacity onPress={control.handleControlPress}>
         <Image
           source={control.icon}
-          style={[styles.icon, control.label === strings.controls.play && styles.playIcon]}
+          style={[
+            styles.icon,
+            control.label === strings.controls.play && styles.playIcon,
+            { tintColor: colors.text },
+          ]}
           resizeMode="cover"
           accessibilityIgnoresInvertColors
         />

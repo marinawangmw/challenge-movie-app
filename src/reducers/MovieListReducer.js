@@ -1,4 +1,5 @@
 import { TYPES } from '@/actions/MovieListActions';
+import { REDUX_STATUS_TYPES } from '@/actions/ReduxStatusActions';
 
 const INITIAL_STATE = {
   errorMessage: undefined,
@@ -89,6 +90,9 @@ export const movieListReducer = (state = INITIAL_STATE, { payload, type }) => {
         ...state,
         errorMessage: payload,
       };
+
+    case REDUX_STATUS_TYPES.CLEAR_STORE:
+      return INITIAL_STATE;
 
     default:
       return state;

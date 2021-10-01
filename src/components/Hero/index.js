@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useTheme } from '@react-navigation/native';
 import { Config } from 'react-native-config';
 import LinearGradient from 'react-native-linear-gradient';
+import Toast from 'react-native-toast-message';
+import { playTrailer } from '../helper';
 import Labels from './Labels';
 import { Header, SpecialBanner, Controls } from '@/components';
 import { spacing, typography } from '@/theme';
@@ -12,6 +14,7 @@ import { addIcon, playIcon, infoIcon } from '@/assets';
 import { strings } from '@/localization';
 import { addToMyList } from '@/actions/MovieListActions';
 import { NAVIGATION } from '@/constants';
+import { en } from '@/localization/en';
 
 export const Hero = ({ navigation }) => {
   const { colors } = useTheme();
@@ -20,6 +23,11 @@ export const Hero = ({ navigation }) => {
 
   const handleMyListIconPress = () => {
     dispatch(addToMyList(heroPoster.posterMovie));
+    Toast.show({
+      type: 'success',
+      text1: en.toast.successTitle,
+      text2: en.toast.addedToMyList,
+    });
   };
 
   const handleInfoIconPress = () => {
@@ -28,9 +36,13 @@ export const Hero = ({ navigation }) => {
     });
   };
 
+  const handlePlayTrailer = () => {
+    playTrailer(heroPoster.posterMovie.id);
+  };
+
   const controlDatas = [
     { icon: addIcon, label: strings.controls.myList, handleControlPress: handleMyListIconPress },
-    { icon: playIcon, label: strings.controls.play },
+    { icon: playIcon, label: strings.controls.play, handleControlPress: handlePlayTrailer },
     { icon: infoIcon, label: strings.controls.info, handleControlPress: handleInfoIconPress },
   ];
 

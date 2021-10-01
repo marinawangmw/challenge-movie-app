@@ -1,15 +1,23 @@
 import { REDUX_STATUS_TYPES } from '@/actions/ReduxStatusActions';
-import { TYPES } from '@/actions/UserActions';
 
-export const userReducer = (state = {}, { payload, type }) => {
+const INITIAL_STATE = {
+  lastFetch: null,
+};
+
+export const reduxStatusReducer = (state = INITIAL_STATE, { payload, type }) => {
   if (type === REDUX_STATUS_TYPES.CLEAR_STORE) {
     console.log('redux status reducer: ', state, payload, type);
   }
   switch (type) {
-    case TYPES.LOGIN_SUCCESS:
-      return { ...state, ...payload.user };
+    case REDUX_STATUS_TYPES.SET_LAST_FETCH:
+      return {
+        ...state,
+        lastFetch: payload,
+      };
+
     case REDUX_STATUS_TYPES.CLEAR_STORE:
-      return {};
+      return INITIAL_STATE;
+
     default:
       return state;
   }

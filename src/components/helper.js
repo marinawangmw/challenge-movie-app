@@ -17,7 +17,7 @@ export const playTrailer = async (id) => {
       } else {
         Toast.show({
           type: 'error',
-          text1: `Something's wrong`,
+          text1: "Something's wrong",
           text2: `Don't know how to open this URL: ${url}`,
         });
       }
@@ -25,7 +25,7 @@ export const playTrailer = async (id) => {
       Toast.show({
         type: 'error',
         text1: 'Oops',
-        text2: `There's no trailer found for this movie`,
+        text2: "There's no trailer found for this movie",
       });
     }
   } catch (e) {

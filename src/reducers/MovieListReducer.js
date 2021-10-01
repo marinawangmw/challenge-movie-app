@@ -1,4 +1,5 @@
 import { TYPES } from '@/actions/MovieListActions';
+import { REDUX_STATUS_TYPES } from '@/actions/ReduxStatusActions';
 
 const INITIAL_STATE = {
   errorMessage: undefined,
@@ -24,6 +25,9 @@ const subtractMovieFromMyList = (myList, movieIdToSubtract) => {
 };
 
 export const movieListReducer = (state = INITIAL_STATE, { payload, type }) => {
+  if (type === REDUX_STATUS_TYPES.CLEAR_STORE) {
+    console.log('redux status reducer: ', state, payload, type);
+  }
   switch (type) {
     case TYPES.FETCH_MOVIE_LISTS_REQUEST:
       return {
@@ -89,6 +93,9 @@ export const movieListReducer = (state = INITIAL_STATE, { payload, type }) => {
         ...state,
         errorMessage: payload,
       };
+
+    case REDUX_STATUS_TYPES.CLEAR_STORE:
+      return INITIAL_STATE;
 
     default:
       return state;

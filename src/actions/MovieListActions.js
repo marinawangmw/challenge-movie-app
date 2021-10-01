@@ -1,3 +1,4 @@
+import { setLastFetch } from './ReduxStatusActions';
 import {
   getTrending,
   getRecentlyAdded,
@@ -67,6 +68,9 @@ const setHeroPosterFromData = (trending, genres, dispatch) => {
 export const fetchMovieListsStartAsync = () => {
   return async (dispatch) => {
     dispatch(fetchMovieListsRequest());
+
+    const datetimeOfNow = new Date();
+    dispatch(setLastFetch(datetimeOfNow));
 
     try {
       const responses = await Promise.all([getTrending(), getRecentlyAdded(), getAllGenre()]);

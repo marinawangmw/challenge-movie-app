@@ -14,15 +14,7 @@ export function HomeNavigator() {
     <Stack.Navigator screenOptions={screenOptions(colors.text)}>
       <Stack.Screen name={NAVIGATION.home} component={Home} options={{ headerShown: false }} />
       <Stack.Screen name={NAVIGATION.movieCollection} component={MovieCollection} />
-      <Stack.Screen
-        name={NAVIGATION.movieDetail}
-        component={MovieDetail}
-        options={{
-          headerStyle: {
-            backgroundColor: 'transparent',
-          },
-        }}
-      />
+      <Stack.Screen name={NAVIGATION.movieDetail} component={MovieDetail} />
     </Stack.Navigator>
   );
 }

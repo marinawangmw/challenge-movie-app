@@ -25,12 +25,12 @@ export function Login() {
   const isLoading = useSelector((state) => isLoadingSelector([TYPES.LOGIN], state));
 
   useEffect(() => {
-    if (Boolean(username) && Boolean(password)) {
+    if (Boolean(username.length) && Boolean(password.length)) {
       LayoutAnimation.configureNext(LayoutAnimation.create(500, 'easeInEaseOut', 'opacity'));
       setShowButton(true);
     }
 
-    if (Boolean(!username) || Boolean(!password)) {
+    if (Boolean(!username.length) || Boolean(!password.length)) {
       LayoutAnimation.configureNext(LayoutAnimation.create(500, 'easeInEaseOut', 'opacity'));
       setShowButton(false);
     }

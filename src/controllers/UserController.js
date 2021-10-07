@@ -1,10 +1,12 @@
 import { strings } from '@/localization';
 
+const userName = 'marina';
+const pw = '123';
 export class UserController {
   static login(username, password) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        if (username && password) {
+        if (username === userName && password === pw) {
           resolve({ username });
         } else {
           reject(new Error(strings.login.invalidCredentials));

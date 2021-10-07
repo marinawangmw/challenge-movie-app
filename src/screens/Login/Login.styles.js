@@ -16,4 +16,11 @@ export const styles = StyleSheet.create({
   submitButton: {
     marginTop: spacing.m,
   },
+  logo: {
+    height: 55,
+    width: 100,
+    resizeMode: 'contain',
+    alignSelf: 'center',
+    marginBottom: spacing.s,
+  },
 });

@@ -13,9 +13,10 @@ const styles = StyleSheet.create({
   },
   input: {
     paddingHorizontal: spacing.xs,
+    color: 'white',
   },
   label: {
-    color: 'gray',
+    color: 'white',
     position: 'absolute',
     top: 0,
     left: spacing.xs,

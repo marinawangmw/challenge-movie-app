@@ -11,7 +11,7 @@ export function ProfileNavigator() {
       <Stack.Screen
         name={NAVIGATION.profile}
         component={Profile}
-        options={{ headerLargeTitle: true }}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );

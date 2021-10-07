@@ -4,7 +4,8 @@ import { spacing } from '@/theme';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'space-between',
+    justifyContent: 'center',
+    alignItems: 'center',
     padding: spacing.xl,
   },
   title: {
